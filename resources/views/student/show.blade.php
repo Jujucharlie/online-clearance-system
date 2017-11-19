@@ -51,7 +51,14 @@
 
 			<table class="table table-striped">
 
-					<tr><th>Department</th><th>Title</th><th>Note</th><th>Posted By</th><th>Posted On</th></tr>
+					<tr>
+						<th>Department</th>
+						<th>Title</th>
+						<th>Note</th>
+						<th>Posted By</th>
+						<th>Posted On</th>
+						<th>&nbsp;</th>
+					</tr>
 					
 					@foreach($student->deficiencies as $deficiency)
 						<tr>
@@ -77,6 +84,7 @@
 									<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
 								@enduserInSameDepartment
 							</td>
+						
 
 						</tr>
 					@endforeach
