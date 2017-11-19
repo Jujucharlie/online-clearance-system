@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Providers;
+
+use App\Staff;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Blade::if('hasRole', function($role){
+            return Auth::user()->hasRole($role);
+        });
+
+        Blade::if('userInSameDepartment', function($department){
+            $user = Auth::user();
+            if($user->hasRole('admin')) return true;
+
+            if($user->hasRole('staff')){
+                return Staff::whereUserId($user->id)->first()->department == $department;
+                // var_dump($department);
+            }
+        });
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+}
