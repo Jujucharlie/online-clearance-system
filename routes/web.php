@@ -7,6 +7,8 @@ Route::resource('college', 'CollegeController');
 
 Route::resource('department', 'DepartmentController');
 
+Route::resource('college.department', 'CollegeDepartmentController');
+
 Route::resource('program', 'ProgramController');
 
 Route::resource('student', 'StudentController');
