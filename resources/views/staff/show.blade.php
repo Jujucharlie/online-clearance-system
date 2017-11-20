@@ -20,6 +20,7 @@
 								{{$staff->college()->name}}
 						</a></td>
 					
+
 				</tr>
 			</table>
 
@@ -35,7 +36,8 @@
 					
 					@userInSameDepartment($staff->department)
 						<th>Actions</th>
-					@endUserInSameDepartment
+					@enduserInSameDepartment
+					
 				</tr>
 				
 				@foreach($staff->posted_deficiencies() as $deficiency)
