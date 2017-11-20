@@ -41,12 +41,15 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Name</th>
+				<th>Total Deficiencies Posted</th>
 			</tr>
 			@foreach($department->staff as $staff)
 			<tr>
 				<td><a href="{{$staff->linkTo()}}">
 					{{$staff->name()}}
 				</a></td>
+
+				<td>{{$staff->deficiencies->count()}}</td>
 			</tr>
 			@endforeach
 

@@ -26,7 +26,17 @@
 			<hr>
 			<h4>Deficiencies posted by this staff member</h4>
 			<table class="table table-striped table-responsive">
-				<tr><th>Department</th><th>Title</th><th>Note</th><th>Student</th><th>Posted On</th></tr>
+				<tr>
+					<th>Department</th>
+					<th>Title</th>
+					<th>Note</th>
+					<th>Student</th>
+					<th>Posted On</th>
+					
+					@userInSameDepartment($staff->department)
+						<th>Actions</th>
+					@endUserInSameDepartment
+				</tr>
 				
 				@foreach($staff->posted_deficiencies() as $deficiency)
 					<tr>
@@ -38,7 +48,17 @@
 						<td><a href="{{$deficiency->student->linkTo()}}">
 							{{$deficiency->student->name()}}
 						</a></td>
-						<td>{{$deficiency->created_at}}</td>
+						<td title="{{ $deficiency->postDateTime() }}">
+								{{ $deficiency->postDate() }}
+						</td>
+				
+						@userInSameDepartment($deficiency->department)
+							<td>					
+								<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
+								&nbsp;
+								<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
+							</td>
+						@enduserInSameDepartment
 					</tr>
 				@endforeach
 			</table>

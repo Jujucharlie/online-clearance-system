@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
 
             if($user->hasRole('staff')){
                 return Staff::whereUserId($user->id)->first()->department == $department;
-                // var_dump($department);
             }
         });
     }

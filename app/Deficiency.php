@@ -25,4 +25,19 @@ class Deficiency extends Model
     {
     	return $this->belongsTo('App\Department');
     }
+
+    /*
+        Returns the post date of a deficiency,
+        converted to a device's local timezone
+        and formatted to a readable format
+     */
+    public function postDate()
+    {
+        return $this->created_at->toFormattedDateString();
+    }
+
+    public function postDateTime()
+    {
+        return $this->created_at->toDayDateTimeString();
+    }
 }

@@ -75,7 +75,9 @@
 							</a></td>
 
 
-							<td title="{{$deficiency->created_at->toDayDateTimeString()}}">{{$deficiency->created_at->toFormattedDateString()}}</td>
+							<td title="{{ $deficiency->postDateTime() }}">
+								{{ $deficiency->postDate() }}
+							</td>
 
 							<td>
 								@userInSameDepartment($deficiency->department)
