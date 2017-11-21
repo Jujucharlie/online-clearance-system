@@ -102,7 +102,7 @@
 			@endif
 
 				@hasRole('staff')
-					<a title="File deficiency" href="#" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+					<a title="File deficiency" href="#" class="btn btn-danger btn-sm pull-right">ADD NEW <span class="glyphicon glyphicon-plus"></span></a>
 				
 				@endhasRole
 						
