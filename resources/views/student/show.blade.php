@@ -43,10 +43,12 @@
 			<h4 class="page-header">Deficiencies </h4>
 			
 			@if($count = $student->deficiencies->count())
-				<div class="alert alert-warning" id="warning">
+				<div class="alert alert-warning">
 					<span class="glyphicon glyphicon-warning-sign"></span>
 					 {{$count}} Deficiencies found.
-
+					
+					<a href="#" class="pull-right alert-warning inline">Dismiss</a>
+					{{-- <span class="glyphicon glyphicon-minus pull-right"></span> --}}
 				</div>
 
 			<table class="table table-striped">
@@ -86,18 +88,24 @@
 									<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
 								@enduserInSameDepartment
 							</td>
-						
-
 						</tr>
+					
 					@endforeach
-
 				</table>
+				
+				
 			@else
 
 			<div class="alert alert-success">
 				<span class="glyphicon glyphicon-ok"></span> No deficiencies found.
 			</div>	
 			@endif
+
+				@hasRole('staff')
+					<a title="File deficiency" href="#" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+				
+				@endhasRole
+						
 
 		@else
 		Not found bruh

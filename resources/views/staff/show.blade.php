@@ -33,11 +33,7 @@
 					<th>Note</th>
 					<th>Student</th>
 					<th>Posted On</th>
-					
-					@userInSameDepartment($staff->department)
-						<th>Actions</th>
-					@enduserInSameDepartment
-					
+					<th>&nbsp;</th>
 				</tr>
 				
 				@foreach($staff->posted_deficiencies() as $deficiency)
