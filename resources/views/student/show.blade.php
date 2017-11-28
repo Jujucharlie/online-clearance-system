@@ -51,47 +51,54 @@
 					{{-- <span class="glyphicon glyphicon-minus pull-right"></span> --}}
 				</div>
 
-			<table class="table table-striped">
-
-					<tr>
-						<th>Department</th>
-						<th>Title</th>
-						<th>Note</th>
-						<th>Posted By</th>
-						<th>Posted On</th>
-						<th>&nbsp;</th>
-					</tr>
-					
-					@foreach($student->deficiencies as $deficiency)
-						<tr>
-							<td><a href="/department/{{$deficiency->department->short_name}}">
-								<span class="visible-xs" title="{{$deficiency->department->name}}">
-									{{strtoupper($deficiency->department->short_name)}}
-								</span>
-								<span class="hidden-xs">{{$deficiency->department->name}}</span>
-							</a></td>
-							<td>{{$deficiency->title}}</td>
-							<td>{{$deficiency->note}}</td>
-							<td><a href="{{$deficiency->staff->linkTo()}}">
-								{{$deficiency->posted_by()}}
-							</a></td>
-
-
-							<td title="{{ $deficiency->postDateTime() }}">
-								{{ $deficiency->postDate() }}
-							</td>
-
-							<td>
-								@userInSameDepartment($deficiency->department)
-									<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
-									&nbsp;
-									<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
-								@enduserInSameDepartment
-							</td>
-						</tr>
-					
-					@endforeach
-				</table>
+			<div id="deficiency-table">
+				<table class="table table-striped">
+			
+								<tr>
+									<th>Department</th>
+									<th>Title</th>
+									<th>Note</th>
+									<th>Posted By</th>
+									<th>Posted On</th>
+									<th>&nbsp;</th>
+								</tr>
+								
+								
+									@foreach($student->deficiencies as $deficiency)
+			
+									<tr>
+										<td><a href="/department/{{$deficiency->department->short_name}}">
+											<span class="visible-xs" title="{{$deficiency->department->name}}">
+												{{strtoupper($deficiency->department->short_name)}}
+											</span>
+											<span class="hidden-xs">{{$deficiency->department->name}}</span>
+										</a></td>
+										
+										<td>{{$deficiency->title}}</td>
+									
+										<td>{{$deficiency->note}}</td>
+										<td><a href="{{$deficiency->staff->linkTo()}}">
+											{{$deficiency->posted_by()}}
+										</a></td>
+			
+			
+										<td title="{{ $deficiency->postDateTime() }}">
+											{{ $deficiency->postDate() }}
+										</td>
+			
+										<td>
+											@userInSameDepartment($deficiency->department)
+												<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
+												&nbsp;
+												<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
+											@enduserInSameDepartment
+										</td>
+									</tr>
+								
+								@endforeach
+			
+							</table>
+						</div>
 				
 				
 			@else
@@ -112,5 +119,7 @@
 
 		@endif
     </div>
+
+    
 @endsection
 

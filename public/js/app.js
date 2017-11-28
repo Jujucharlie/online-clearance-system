@@ -963,7 +963,8 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(42);
+__webpack_require__(42);
+module.exports = __webpack_require__(43);
 
 
 /***/ }),
@@ -42866,6 +42867,20 @@ if (false) {
 
 /***/ }),
 /* 42 */
+/***/ (function(module, exports) {
+
+Vue.component('deficiency', {
+
+	template: '<th><slot>This is the default</slot></th>'
+
+});
+
+new Vue({
+	el: '#deficiency-table'
+});
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
