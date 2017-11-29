@@ -78,7 +78,7 @@
 									
 										<td>{{$deficiency->note}}</td>
 										<td><a href="{{$deficiency->staff->linkTo()}}">
-											{{$deficiency->posted_by()}}
+											{{$deficiency->postedBy()}}
 										</a></td>
 			
 			
@@ -122,4 +122,3 @@
 
     
 @endsection
-

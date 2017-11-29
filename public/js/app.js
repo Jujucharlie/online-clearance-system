@@ -42871,7 +42871,7 @@ if (false) {
 
 Vue.component('deficiency', {
 
-	template: '<th><slot>This is the default</slot></th>'
+	template: '<table>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<th>Department</th>\n\t\t\t\t\t\t<th>Title</th>\n\t\t\t\t\t\t<th>Note</th>\n\t\t\t\t\t\t<th>Staff</th>\n\t\t\t\t\t\t<th>Posted On</th>\n\t\t\t\t\t</tr>\n\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td><slot name="department"></slot></td>\n\t\t\t\t\t\t<td><slot name="title"></slot></td>\n\t\t\t\t\t\t<td><slot name="note"></slot></td>\n\t\t\t\t\t\t<td><slot name="staff"></slot></td>\n\t\t\t\t\t\t<td><slot name="posted-on"></slot></td>\n\t\t\t\t\t</tr>\n\t\t\t\t</table>'
 
 });
 

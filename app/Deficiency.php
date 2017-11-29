@@ -16,7 +16,7 @@ class Deficiency extends Model
     	return $this->belongsTo('App\Staff');
     }
 
-    public function posted_by()
+    public function postedBy()
     {
         return $this->staff->name();
     }
