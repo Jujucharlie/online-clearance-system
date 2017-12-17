@@ -42869,14 +42869,19 @@ if (false) {
 /* 42 */
 /***/ (function(module, exports) {
 
-Vue.component('deficiency', {
+Vue.component('modal', {
 
-	template: '<table>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<th>Department</th>\n\t\t\t\t\t\t<th>Title</th>\n\t\t\t\t\t\t<th>Note</th>\n\t\t\t\t\t\t<th>Staff</th>\n\t\t\t\t\t\t<th>Posted On</th>\n\t\t\t\t\t</tr>\n\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td><slot name="department"></slot></td>\n\t\t\t\t\t\t<td><slot name="title"></slot></td>\n\t\t\t\t\t\t<td><slot name="note"></slot></td>\n\t\t\t\t\t\t<td><slot name="staff"></slot></td>\n\t\t\t\t\t\t<td><slot name="posted-on"></slot></td>\n\t\t\t\t\t</tr>\n\t\t\t\t</table>'
+	template: '<div class="modal is-active">\n\t\t\t\t  <div class="modal-background"></div>\n\t\t\t\t  <div class="modal-card">\n\t\t\t\t    <header class="modal-card-head">\n\t\t\t\t      <p class="modal-card-title">\n\t\t\t\t      \t\t<slot name="header">default title</slot>\n\t\t\t\t      </p>\n\t\t\t\t      <button class="delete" aria-label="close"></button>\n\t\t\t\t    </header>\n\t\t\t\t    <section class="modal-card-body">\n\t\t\t\t      <slot>Default content</slot>\n\t\t\t\t    </section>\n\t\t\t\t    <footer class="modal-card-foot">\n\t\t\t\t      <button class="button is-success">Save changes</button>\n\t\t\t\t      <button class="button">Cancel</button>\n\t\t\t\t    </footer>\n\t\t\t\t  </div>\n\t\t\t\t</div>'
+
+});
+
+Vue.component('deficiency', {
+	template: '<tr>\n\t\t\t\t\t<td><slot name="department"></slot></td>\n\t\t\t\t\t<td><slot name="title"></slot></td>\n\t\t\t\t\t<td><slot name="note"></slot></td>\n\t\t\t\t\t<td><slot name="postedBy"></slot></td>\n\t\t\t\t\t<td><slot name="postDate"></slot></td>\n\t\t\t\t</tr>'
 
 });
 
 new Vue({
-	el: '#deficiency-table'
+	el: '#deficiency-row'
 });
 
 /***/ }),
