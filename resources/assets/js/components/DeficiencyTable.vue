@@ -1,5 +1,5 @@
 <script>
-	import Vuetable from 'vuetable-2/src/components/Vuetable'
+import Vuetable from 'vuetable-2/src/components/Vuetable'
 
 	//import VuetablePagination from 'vuetable-2/src/components/VuetablePaginationDropdown' --- for dropdown pagination
 	import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
@@ -59,11 +59,11 @@
 						table-striped: true,	
 					}
 				},
-					[
-						h('filter-bar'),
-						this.renderVuetable(h),
-						this.renderPagination(h)
-					]
+				[
+				h('filter-bar'),
+				this.renderVuetable(h),
+				this.renderPagination(h)
+				]
 
 				);
 		},
@@ -77,27 +77,27 @@
 
 			renderVuetable(h){
 				return h(
-						'vuetable',
-						{
-							ref: 'vuetable',
-							props: {
-								apiUrl: this.apiUrl,
-								fileds: this.fields,
-								paginationPath: "",
-								perPage: 10,
-								multiSort: true,
-								sortOrder: this.sortOrder,
-								appendParams: this.appendParams,
-								detailRowComponent: this.detailRowComponent,
-								css: CssConfig.table
-							},
+					'vuetable',
+					{
+						ref: 'vuetable',
+						props: {
+							apiUrl: this.apiUrl,
+							fileds: this.fields,
+							paginationPath: "",
+							perPage: 10,
+							multiSort: true,
+							sortOrder: this.sortOrder,
+							appendParams: this.appendParams,
+							detailRowComponent: this.detailRowComponent,
+							css: CssConfig.table
+						},
 
-							on: {
-								'vuetable:cell-clicked' : this.onCellClicked,
-								'vuetable:pagination-data': this.onPaginationData,	
-								scopdeSlots: this.$vnode.data.scpodeSlots
-							}
+						on: {
+							'vuetable:cell-clicked' : this.onCellClicked,
+							'vuetable:pagination-data': this.onPaginationData,	
+							scopdeSlots: this.$vnode.data.scpodeSlots
 						}
+					}
 					);
 			},
 
@@ -112,19 +112,19 @@
 						css: CssConfig.pagination
 					},
 					[
-						h('vuetable-pagination-info', 
-						{
-							ref: 'paginationInfo'
-						}),
-						h('vuetable-pagination',
-						{
-							ref: 'pagination',
-							on: {
-								'vuetable-pagination:change-page' : this.onChangePage
-							}
-						})
+					h('vuetable-pagination-info', 
+					{
+						ref: 'paginationInfo'
+					}),
+					h('vuetable-pagination',
+					{
+						ref: 'pagination',
+						on: {
+							'vuetable-pagination:change-page' : this.onChangePage
+						}
+					})
 					]
-				);
+					);
 			},
 
 			onFilterSet(filterText){
@@ -139,21 +139,21 @@
 			},
 
 			
-		    onPaginationData(paginationData){
-		      this.$refs.pagination.setPaginationData(paginationData);
-		    },
+			onPaginationData(paginationData){
+				this.$refs.pagination.setPaginationData(paginationData);
+			},
 
-		    onChangePage(page){
-		      this.$refs.vuetable.changePage(page);
-		    },
+			onChangePage(page){
+				this.$refs.vuetable.changePage(page);
+			},
 
-		    onPaginationData (paginationData) {
+			onPaginationData (paginationData) {
 
-		        this.$refs.pagination.setPaginationData(paginationData);
-		        this.$refs.paginationInfo.setPaginationData(paginationData);
-		    },
+				this.$refs.pagination.setPaginationData(paginationData);
+				this.$refs.paginationInfo.setPaginationData(paginationData);
+			},
 
 		}
 	}
 
-</script>
+	</script>
