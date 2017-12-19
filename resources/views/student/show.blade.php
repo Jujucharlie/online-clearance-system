@@ -42,15 +42,6 @@
 
 			<h4 class="page-header">Deficiencies </h4>
 			
-			@if($count = $student->deficiencies->count())
-				<div class="alert alert-warning">
-					<span class="glyphicon glyphicon-warning-sign"></span>
-					 {{$count}} Deficiencies found.
-					
-					<a href="#" class="pull-right alert-warning inline">Dismiss</a>
-					{{-- <span class="glyphicon glyphicon-minus pull-right"></span> --}}
-				</div>
-
 			<div id="deficiency-table">
 				<table class="table table-striped">
 			
@@ -100,13 +91,6 @@
 							</table>
 						</div>
 				
-				
-			@else
-
-			<div class="alert alert-success">
-				<span class="glyphicon glyphicon-ok"></span> No deficiencies found.
-			</div>	
-			@endif
 
 				@hasRole('staff')
 					<a title="File deficiency" href="#" class="btn btn-danger btn-sm pull-right">ADD NEW <span class="glyphicon glyphicon-plus"></span></a>
