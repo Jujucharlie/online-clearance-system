@@ -16,8 +16,6 @@ class StudentController extends Controller
 
     public function show($slug)
     {
-
-
         $student = Student::whereSlug($slug)->first();
         if($student){
             return view('student.show', compact('student'));

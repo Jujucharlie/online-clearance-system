@@ -40,7 +40,7 @@
 		</table>
 
 
-		<h4 class="page-header">Deficiencies </h4>
+		<h4 class="page-header"><a href="/student/{{$student->slug}}/deficiencies">Deficiencies</a></h4>
 
 		<div id="deficiency-table">
 			<table class="table table-striped">
