@@ -32,6 +32,7 @@ class StudentProfileMiddleware
 
                 $student = Student::whereUserId($user->id)->first();
                 if($student->student_number == $request->student){
+
                     return $next($request);
                 }
                 abort(403);

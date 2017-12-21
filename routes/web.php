@@ -1,5 +1,6 @@
 <?php
 
+use App\Staff;
 use App\Student;
 
 
@@ -16,9 +17,15 @@ Route::resource('program', 'ProgramController');
 Route::resource('student', 'StudentController');
 
 Route::get('/student/{slug}/deficiencies', function($slug){
-	return Student::whereSlug($slug)->firstOrFail()->deficiencies->paginate(10);
+	return Student::whereSlug($slug)->firstOrFail()->deficiencies;
 
-});
+})->middleware('studentprofile');
+
+Route::get('/staff/{slug}/deficiencies', function($slug){
+	return Staff::whereSlug($slug)->firstOrFail()->deficiencies;
+
+})->middleware('studentprofile');
+
 
 Route::resource('staff', 'StaffController');
 
