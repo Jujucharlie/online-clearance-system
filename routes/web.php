@@ -6,6 +6,8 @@ use App\Student;
 
 Route::get('/', 'PagesController@index');
 
+Route::get('/profile', 'PagesController@profile');
+
 Route::resource('college', 'CollegeController');
 
 Route::resource('department', 'DepartmentController');
@@ -22,6 +24,7 @@ Route::get('/student/{slug}/deficiencies', function($slug){
 
 })->middleware('studentprofile');
 
+//JSON object containing deficiencies posted by a staff member
 Route::get('/staff/{slug}/deficiencies', function($slug){
 	return Staff::whereSlug($slug)->firstOrFail()->deficiencies;
 

@@ -30,8 +30,12 @@ class StudentProfileMiddleware
 
             if($user->hasRole('student')){
 
+                $slug = $request->route('slug'); 
+
                 $student = Student::whereUserId($user->id)->first();
-                if($student->student_number == $request->student){
+                if($student->student_number == intval($request->student) 
+                    || $student->student_number == intval($slug)
+                    ){
 
                     return $next($request);
                 }
