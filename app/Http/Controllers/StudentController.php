@@ -18,7 +18,8 @@ class StudentController extends Controller
     {
         $student = Student::whereSlug($slug)->first();
         if($student){
-            return view('student.show', compact('student'));
+            $deficiencies = $student->deficiencies()->simplePaginate(5);
+            return view('student.show', compact(['student', 'deficiencies']));
         }
 
         //Only evaluates the first numeric part (student number)

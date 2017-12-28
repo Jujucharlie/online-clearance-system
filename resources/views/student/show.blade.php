@@ -61,7 +61,7 @@
 				</tr>
 
 
-				@foreach($student->deficiencies as $deficiency)
+				@foreach($deficiencies as $deficiency)
 
 				<tr>
 					<td><a href="/department/{{$deficiency->department->short_name}}">
@@ -95,6 +95,8 @@
 				@endforeach
 
 			</table>
+
+				{{ $deficiencies->render() }}
 		</div>
 
 
