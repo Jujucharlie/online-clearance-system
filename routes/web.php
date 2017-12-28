@@ -18,18 +18,6 @@ Route::resource('program', 'ProgramController');
 
 Route::resource('student', 'StudentController');
 
-//Generate a JSON Object containing deficiencies of a student
-Route::get('/student/{slug}/deficiencies', function($slug){
-	return Student::whereSlug($slug)->firstOrFail()->deficiencies;
-
-})->middleware('studentprofile');
-
-//JSON object containing deficiencies posted by a staff member
-Route::get('/staff/{slug}/deficiencies', function($slug){
-	return Staff::whereSlug($slug)->firstOrFail()->deficiencies;
-
-})->middleware('studentprofile');
-
 Route::resource('staff', 'StaffController');
 
 Auth::routes();
