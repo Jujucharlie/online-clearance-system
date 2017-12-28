@@ -26,11 +26,7 @@
 
 			<hr>
 			<h4>
-				@hasRole('staff')
-						<a href="/staff/{{$staff->slug}}/deficiencies">Deficiencies</a>
-				@else
-					Deficiencies
-				@endhasRole
+				Deficiencies
 			</h4>
 			<table class="table table-striped table-responsive">
 				<tr>

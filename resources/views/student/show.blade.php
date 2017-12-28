@@ -41,11 +41,7 @@
 
 
 		<h4 class="page-header">
-			@hasRole('staff')
-				<a href="/student/{{$student->slug}}/deficiencies">Deficiencies</a>
-			@else
-				Deficiencies
-			@endhasRole
+			Deficiencies
 		</h4>
 
 		<div id="deficiency-table">
