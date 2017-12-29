@@ -53,9 +53,10 @@
 					<th>Note</th>
 					<th>Posted By</th>
 					<th>Posted On</th>
-					<th>Actions</th>
+					@hasRole('staff')	
+						<th>Actions</th>
+					@endhasRole
 				</tr>
-
 
 				@foreach($deficiencies as $deficiency)
 
@@ -81,10 +82,14 @@
 
 					<td>
 						@userInSameDepartment($deficiency->department)
-						<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
+								{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
+
+									{{Form::button('<span class="glyphicon glyphicon-trash" title="Delete"></span>', array('type' => 'submit', 'class' => 'btn btn-danger btn-xs')) }}	
+								{{ Form::close()}}
+{{-- 						<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
 						&nbsp;
 						<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
-						@enduserInSameDepartment
+ --}}						@enduserInSameDepartment
 					</td>
 				</tr>
 

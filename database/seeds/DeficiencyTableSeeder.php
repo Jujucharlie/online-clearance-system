@@ -27,11 +27,5 @@ class DeficiencyTableSeeder extends Seeder
         makeDeficiency(200824143, 'Broken testubes', 'hala lagot kaaaaa' , 1);
         makeDeficiency(200824143, 'Lorem ipsum', 'boobies :)' , 2);
         makeDeficiency(200824143, 'sit_dd', 'hala lagot kaaaaa' , 1);
-        makeDeficiency(200824143, 'Broken testubes', 'hala lagot kaaaaa' , 1);
-        makeDeficiency(200824143, 'Lorem ipsum', 'boobies :)' , 2);
-        makeDeficiency(200824143, 'sit_dd', 'hala lagot kaaaaa' , 1);
-        makeDeficiency(200824143, 'Broken testubes', 'hala lagot kaaaaa' , 1);
-        makeDeficiency(200824143, 'Lorem ipsum', 'boobies :)' , 2);
-        makeDeficiency(200824143, 'sit_dd', 'hala lagot kaaaaa' , 1);
     }
 }
