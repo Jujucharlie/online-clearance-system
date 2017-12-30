@@ -68,7 +68,7 @@
 							@endif
 							">Department
 							@if($sort=="department")
-								@include('helpers.glyphiconchevron')
+								@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
@@ -81,7 +81,7 @@
 							@endif
 							">Title
 							@if($sort=="title")
-								@include('helpers.glyphiconchevron')
+								@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
@@ -95,20 +95,20 @@
 							@endif
 							">Posted By
 							@if($sort=="staff")
-								@include('helpers.glyphiconchevron')
+								@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
 					<th>
 						<a href="{{ url()->current() . "?sort=date&page=1&order="}}
-							@if($sort=="date" && $order=="desc")
-							asc
-							@else
+							@if($sort=="date" && $order=="asc")
 							desc
+							@else
+							asc
 							@endif
 							">Posted On
 							@if($sort=="date")
-								@include('helpers.glyphiconchevron')
+								@include('helpers.sorticons')
 							@endif
 
 						</a>
@@ -135,7 +135,6 @@
 						{{$deficiency->postedBy()}}
 					</a></td>
 
-
 					<td title="{{ $deficiency->postDateTime() }}">
 						{{ $deficiency->postDate() }}
 					</td>
@@ -144,7 +143,12 @@
 						@userInSameDepartment($deficiency->department)
 								{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
 
-									{{Form::button('<span class="glyphicon glyphicon-trash" title="Delete"></span>', array('type' => 'submit', 'class' => 'btn btn-danger btn-xs')) }}	
+									{{Form::button('<span class="glyphicon glyphicon-ok"></span>', 
+										array('type' => 'submit', 
+													'class' => 'btn btn-success btn-xs',
+													'data-toggle' => 'tooltip',
+													'title' => 'Mark as completed'
+									)) }}	
 								{{ Form::close()}}
 {{-- 						<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
 						&nbsp;
