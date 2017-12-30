@@ -6,6 +6,17 @@
 		document.title = '{{$student->name()}}' + ' - ' + document.title;
 	</script>
 
+	@php
+		if(isset($_GET['sort'])){
+			$sort = $_GET['sort'];
+		}
+		else $sort = null;
+		if(isset($_GET['order'])){
+			$order = $_GET['order'];
+		}
+		else $order = null;
+	@endphp
+
 
 	@if(isset($student))
 	<table class="table table-striped">
@@ -48,20 +59,52 @@
 			<table class="table table-striped">
 
 				<tr>
-					<th>Department</th>
-					<th>Title</th>
+					<th>
+						<a href="{{ url()->current() . "?sort=department&page=1&order="}}
+							@if($sort=="department" && $order=="asc")
+							desc
+							@else
+							asc
+							@endif
+							">Department</a>
+					</th>
+					<th>
+						<a href="{{ url()->current() . "?sort=title&page=1&order="}}
+							@if($sort=="title" && $order=="asc")
+							desc
+							@else
+							asc
+							@endif
+							">Title</a>
+					</th>
 					<th>Note</th>
-					<th>Posted By</th>
-					<th>Posted On</th>
-					@hasRole('staff')	
-						<th>Actions</th>
-					@endhasRole
-				</tr>
+					<th>
+						<a href="{{ url()->current() . "?sort=staff&page=1&order="}}
+							@if($sort=="staff" && $order=="asc")
+							desc
+							@else
+							asc
+							@endif
+							">Posted By</a>
+					</th>
+					<th>
+						<a href="{{ url()->current() . "?sort=date&page=1&order="}}
+							@if($sort=="date" && $order=="desc")
+							asc
+							@else
+							desc
+							@endif
+							">Posted On</a>
+					</th>
+						@hasRole('staff')	
+							<th>Actions</th>
+						@endhasRole
+					</tr>
 
-				@foreach($deficiencies as $deficiency)
+					@foreach($deficiencies as $deficiency)
 
-				<tr>
-					<td><a href="/department/{{$deficiency->department->short_name}}">
+					<tr>
+						<td><a href="/department/{{$deficiency->department->short_name}}">
 						<span class="visible-xs" title="{{$deficiency->department->name}}">
 							{{strtoupper($deficiency->department->short_name)}}
 						</span>
@@ -96,16 +139,7 @@
 				@endforeach
 
 			</table>
-				@php
-					if(isset($_GET['sort'])){
-						$sort = $_GET['sort'];
-					}
-					else $sort = null;
-					if(isset($_GET['order'])){
-						$order = $_GET['order'];
-					}
-					else $order = null;
-				@endphp
+
 				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->render() }}
 		</div>
 
