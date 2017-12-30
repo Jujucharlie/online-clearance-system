@@ -66,7 +66,11 @@
 							@else
 							asc
 							@endif
-							">Department</a>
+							">Department
+							@if($sort=="department")
+								@include('helpers.glyphiconchevron')
+							@endif
+						</a>
 					</th>
 					<th>
 						<a href="{{ url()->current() . "?sort=title&page=1&order="}}
@@ -75,7 +79,11 @@
 							@else
 							asc
 							@endif
-							">Title</a>
+							">Title
+							@if($sort=="title")
+								@include('helpers.glyphiconchevron')
+							@endif
+						</a>
 					</th>
 					<th>Note</th>
 					<th>
@@ -85,7 +93,11 @@
 							@else
 							asc
 							@endif
-							">Posted By</a>
+							">Posted By
+							@if($sort=="staff")
+								@include('helpers.glyphiconchevron')
+							@endif
+						</a>
 					</th>
 					<th>
 						<a href="{{ url()->current() . "?sort=date&page=1&order="}}
@@ -94,7 +106,12 @@
 							@else
 							desc
 							@endif
-							">Posted On</a>
+							">Posted On
+							@if($sort=="date")
+								@include('helpers.glyphiconchevron')
+							@endif
+
+						</a>
 					</th>
 						@hasRole('staff')	
 							<th>Actions</th>
