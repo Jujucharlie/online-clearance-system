@@ -122,7 +122,7 @@
 
 					<tr>
 						<td><a href="/department/{{$deficiency->department->short_name}}">
-						<span class="visible-xs" title="{{$deficiency->department->name}}">
+						<span class="visible-xs" title="{{$deficiency->department->name}}" data-toggle="tooltip">
 							{{strtoupper($deficiency->department->short_name)}}
 						</span>
 						<span class="hidden-xs">{{$deficiency->department->name}}</span>
@@ -135,7 +135,7 @@
 						{{$deficiency->postedBy()}}
 					</a></td>
 
-					<td title="{{ $deficiency->postDateTime() }}">
+					<td title="{{ $deficiency->postDateTime() }}" data-toggle="tooltip">
 						{{ $deficiency->postDate() }}
 					</td>
 
