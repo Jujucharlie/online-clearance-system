@@ -32,7 +32,7 @@
 			<tr>
 				<th>College</th>			
 				<td><a href="/college/{{$student->college()->short_name}}">
-					{{$student->college()->name}}
+					{{ $student->college()->name }}
 				</a></td>
 
 			</tr>
@@ -96,8 +96,17 @@
 				@endforeach
 
 			</table>
-
-				{{ $deficiencies->render() }}
+				@php
+					if(isset($_GET['sort'])){
+						$sort = $_GET['sort'];
+					}
+					else $sort = null;
+					if(isset($_GET['order'])){
+						$order = $_GET['order'];
+					}
+					else $order = null;
+				@endphp
+				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->render() }}
 		</div>
 
 

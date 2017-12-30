@@ -18,7 +18,37 @@ class StudentController extends Controller
     {
         $student = Student::whereSlug($slug)->first();
         if($student){
-            $deficiencies = $student->deficiencies()->simplePaginate(5);
+
+            //column sort
+            if(isset($_GET['sort'])){
+                switch($_GET['sort']){
+                    case "department": 
+                        $sort = "department_id";
+                        break;
+                    case "staff":
+                        $sort = "staff_id";
+                        break;
+                    case "date":
+                        $sort = "created_at";
+                        break;
+                    case "title":
+                        $sort = "title";
+                        break;
+                    default:
+                        $sort = "created_at";
+                }
+            }else{
+                $sort = "created_at";
+            }
+
+            //sort order
+            if(isset($_GET['order'])){
+                $order = $_GET['order'] == "asc" ? "asc" : "desc";
+            }else{
+                $order = "desc";
+            } 
+
+            $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
             return view('student.show', compact(['student', 'deficiencies']));
         }
 

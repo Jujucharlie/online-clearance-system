@@ -24,8 +24,16 @@ class DeficiencyTableSeeder extends Seeder
         	$def->save();
         }
 
-        makeDeficiency(200824143, 'Broken testubes', 'hala lagot kaaaaa' , 1);
-        makeDeficiency(200824143, 'Lorem ipsum', 'boobies :)' , 2);
-        makeDeficiency(200824143, 'sit_dd', 'hala lagot kaaaaa' , 1);
+        $melbs = 200824143;
+        makeDeficiency($melbs, 'Broken testubes', 'hala lagot kaaaaa' , 1);
+        makeDeficiency($melbs, 'Lorem ipsum', 'boobies :)' , 2);
+        makeDeficiency($melbs, 'sit_dd', 'hala lagot kaaaaa' , 1);
+        makeDeficiency($melbs, 'bleep', 'bloop', 3);
+        makeDeficiency($melbs, 'borp', 'gorp', 6);
+        makeDeficiency($melbs, 'Broken testubes', 'hala lagot kaaaaa' , 1);
+        makeDeficiency($melbs, 'Lorem ipsum', 'boobies :)' , 2);
+        makeDeficiency($melbs, 'sit_dd', 'hala lagot kaaaaa' , 1);
+        makeDeficiency($melbs, 'bleep', 'bloop', 3);
+        makeDeficiency($melbs, 'borp', 'gorp', 6);
     }
 }

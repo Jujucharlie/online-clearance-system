@@ -1,9 +1,5 @@
 <?php
 
-use App\Staff;
-use App\Student;
-
-
 Route::get('/', 'PagesController@index');
 
 Route::get('/profile', 'PagesController@profile');
