@@ -5,6 +5,7 @@ use App\Staff;
 use App\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Faker\Factory as Faker;
 
 class DeficiencyTableSeeder extends Seeder
 {
@@ -16,12 +17,12 @@ class DeficiencyTableSeeder extends Seeder
     public function run()
     {
 
-        function makeDeficiency($student_number, $title, $note, $staff_id){
+        function makeDeficiency($title, $note, $staff_id){
             $startDate = Carbon::now();
-            $endDate = Carbon::now()->subYears(2);
+            $endDate = Carbon::now()->subYears(10);
 
         	$def = new Deficiency;
-        	$def->student_id = Student::whereStudentNumber($student_number)->first()->id;
+        	$def->student_id = rand(1,100);
         	$def->title = $title;
         	$def->note = $note;
         	$def->staff_id = $staff_id;
@@ -30,8 +31,9 @@ class DeficiencyTableSeeder extends Seeder
         	$def->save();
         }
 
-        $melbs = 200824143;
-        for($i=0;$i<15;$i++)
-            makeDeficiency($melbs, str_random(15), str_random(10), rand(1,6));
+        $faker = Faker::create('App\Deficiency');
+
+        for($i=0;$i<300;$i++)
+            makeDeficiency($faker->sentence(), $faker->sentence(), rand(1,50));
     }
 }

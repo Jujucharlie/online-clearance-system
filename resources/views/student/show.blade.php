@@ -72,7 +72,8 @@
 							@endif
 						</a>
 					</th>
-					<th>Note</th>
+		
+					<th class="visible-md visible-lg visible-xl hidden-sm hidden-xs">Note</th>
 					<th>
 						<a href="{{ url()->current() . "?sort=staff&page=1&order="}}
 							@if($sort=="staff" && $order=="asc")
@@ -108,22 +109,40 @@
 					@foreach($deficiencies as $deficiency)
 
 					<tr>
-						<td>
+						<td title="{{$deficiency->department->name}}" data-toggle="tooltip">
 							@hasRole('staff')
 								<a href="/department/{{$deficiency->department->short_name}}">
 							@endhasRole
-						<span class="visible-xs" title="{{$deficiency->department->name}}" data-toggle="tooltip">
+						<span class="visible-sm visible-xs" >
 							{{strtoupper($deficiency->department->short_name)}}
 						</span>
-						<span class="hidden-xs">{{$deficiency->department->name}}</span>
+						<span class="hidden-sm hidden-xs visible-md">{{str_limit($deficiency->department->name, 20)}}</span>
+						<span class="hidden-md visible-lg hidden-xl">{{str_limit($deficiency->department->name, 50)}}</span>
+
 					@hasRole('staff')
 						</a>
 					@endhasRole
 					</td>
+					<td data-toggle="tooltip" title="{{$deficiency->title}}">
+						<span class="hidden-lg">
+							{{str_limit($deficiency->title, 25)}}	
+						</span>
 
-					<td>{{$deficiency->title}}</td>
+						<span class="visible-lg">
+							{{str_limit($deficiency->title, 35)}}
+						</span>
+					</td>
 
-					<td>{{$deficiency->note}}</td>
+					<td class="visible-md visible-lg visible-xl hidden-sm hidden-xs" data-toggle="tooltip" title="{{$deficiency->note}}">
+						<span class="hidden-lg">
+							{{ str_limit($deficiency->note, 20) }}
+						</span>		
+
+						<span class="visible-lg">
+							{{ str_limit($deficiency->note, 30) }}
+						</span>
+					</td>	
+
 					<td><a href="{{$deficiency->staff->linkTo()}}">
 						{{$deficiency->postedBy()}}
 					</a></td>

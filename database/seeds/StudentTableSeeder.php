@@ -5,6 +5,8 @@ use App\Role;
 use App\Student;
 use App\User;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 
 class StudentTableSeeder extends Seeder
 {
@@ -26,21 +28,15 @@ class StudentTableSeeder extends Seeder
             $student = new Student();
             $student->student_number = $student_number;
             $student->user_id = $user->id;
-            $student->program_id = Program::whereShortName($program)
-                ->first()->id;
+            $student->program_id = rand(1, 11);
             $student->save();
         }
 
-        makeStudent('Melvin San Jose', 'melbs@gmail.com', 200824143, 'bscs');
-        makeStudent('Mario De Mesa', 'mario@email.com', 200912345, 'bsbc');
-        makeStudent('Xeus Foja', 'xdfoja@yahoomail.com', 201011132, 'baps');
-        makeStudent('Beverly Festejo','bevfes@boobies', 200812151, 'bscs');
-        makeStudent('Arianne May Balaoing', 'limeclouds@twitter', 200913222, 'bsph');
-        makeStudent('Guillan May Tibule', 'nakakagiguil@twitter', 200909993, 'baoc');
-        makeStudent('Some Student', 'somestudent@email.com', 201003293, 'baps');
-        makeStudent('Ian Viena', 'ifviena@ims', 200800250, 'bscs');
-        makeStudent('Kathlyn Valdez', 'kvaldez@up', 201013099, 'bsn');
-        makeStudent('Edriann Hao', 'hao@up', 201113099, 'dd');
-        makeStudent('Milany Anne Luay','mluay@up.edu.ph', 201220201, 'bsip');
+        $faker = Faker::create('App\Student');
+
+        makeStudent('Melvin San Jose', 'melbs@gmail.com', 200824143, 1);
+
+        for($i=0;$i<100;$i++)
+            makeStudent($faker->name(), $faker->email(), rand(200000000,201800000), rand(1,11));
     }
 }
