@@ -50,13 +50,6 @@ class StaffTableSeeder extends Seeder
             makeStaff($faker->name(), $faker->email());
         }
 
-     // 	makeStaff('Eden Huelgas','eden@email.com','dpsm');
-    	// makeStaff('Rina Tolentino','rina@email.com','db');
-    	// makeStaff('Dong Calmada','dong@email.com','cngrad');
-    	// makeStaff('Gilbert Aquino','gilbert@email.com','dmb');
-     //    makeStaff('John Doe','jdoe@email.com','dd');
-     //    makeStaff('Max Caulfield','mcaulfield@email.com','dpsm');
-     //    makeStaff('Super Admin', 'admin@admin.com', 'dpsm', 'admin');
     }
  
 }

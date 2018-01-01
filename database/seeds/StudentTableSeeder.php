@@ -28,7 +28,7 @@ class StudentTableSeeder extends Seeder
             $student = new Student();
             $student->student_number = $student_number;
             $student->user_id = $user->id;
-            $student->program_id = rand(1, 11);
+            $student->program_id = $program;
             $student->save();
         }
 

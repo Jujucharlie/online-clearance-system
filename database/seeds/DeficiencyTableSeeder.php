@@ -17,12 +17,12 @@ class DeficiencyTableSeeder extends Seeder
     public function run()
     {
 
-        function makeDeficiency($title, $note, $staff_id){
+        function makeDeficiency($student_id, $title, $note, $staff_id){
             $startDate = Carbon::now();
             $endDate = Carbon::now()->subYears(10);
 
         	$def = new Deficiency;
-        	$def->student_id = rand(1,100);
+        	$def->student_id = $student_id;
         	$def->title = $title;
         	$def->note = $note;
         	$def->staff_id = $staff_id;
@@ -34,6 +34,9 @@ class DeficiencyTableSeeder extends Seeder
         $faker = Faker::create('App\Deficiency');
 
         for($i=0;$i<300;$i++)
-            makeDeficiency($faker->sentence(), $faker->sentence(), rand(1,50));
+            makeDeficiency(rand(1,100), $faker->sentence(), $faker->sentence(), rand(1,50));
+
+        for($i=0;$i<15;$i++)
+            makeDeficiency(1, $faker->sentence(), $faker->sentence(), rand(1,50));
     }
 }

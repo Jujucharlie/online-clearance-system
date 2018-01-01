@@ -24,10 +24,10 @@ class StudentController extends Controller
             if($request->has('sort')){
                 switch($request->input('sort')){
                     case "department": 
-                        $sort = "department_id";
+                        $sort = "dept_short_name";
                         break;
                     case "staff":
-                        $sort = "staff_id";
+                        $sort = "staff_slug";
                         break;
                     case "date":
                         $sort = "created_at";
@@ -56,7 +56,15 @@ class StudentController extends Controller
                 $order = "desc";
             } 
 
-            $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
+            // $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
+
+            $deficiencies = DB::table('deficiencies')
+                            ->where('student_id', '=', $student->id)
+                            ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
+                            ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
+                            ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
+                            ->orderBy($sort, $order)
+                            ->simplePaginate(5);
 
             $sort = $request->input('sort');
             $order = $request->input('order');
@@ -64,11 +72,11 @@ class StudentController extends Controller
             return view('student.show', compact(['student', 'deficiencies', 'sort', 'order']));
         }//end if($student)
 
-        //Only evaluates the first numeric part (student number)
-        //everything that comes after the student number is ignored
-        //redirect to the proper slug with
-        //20XXXXXXX-first-last format
-        //HTTP 404 error if no student is found
+        // Only evaluates the first numeric part (student number)
+        // everything that comes after the student number is ignored
+        // redirect to the proper slug with
+        // 20XXXXXXX-first-last format
+        // HTTP 404 error if no student is found
         $student_number = intval($slug);
         $student = Student::whereStudentNumber($student_number)->firstOrFail();
         return redirect()->action('StudentController@show', ['slug' => $student->slug]);

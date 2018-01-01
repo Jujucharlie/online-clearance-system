@@ -109,15 +109,15 @@
 					@foreach($deficiencies as $deficiency)
 
 					<tr>
-						<td title="{{$deficiency->department->name}}" data-toggle="tooltip">
+						<td title="{{$deficiency->dept_name}}" data-toggle="tooltip">
 							@hasRole('staff')
-								<a href="/department/{{$deficiency->department->short_name}}">
+								<a href="/department/{{$deficiency->dept_short_name}}">
 							@endhasRole
 						<span class="visible-sm visible-xs" >
-							{{strtoupper($deficiency->department->short_name)}}
+							{{strtoupper($deficiency->dept_short_name)}}
 						</span>
-						<span class="hidden-sm hidden-xs visible-md">{{str_limit($deficiency->department->name, 20)}}</span>
-						<span class="hidden-md visible-lg hidden-xl">{{str_limit($deficiency->department->name, 50)}}</span>
+						<span class="hidden-sm hidden-xs visible-md">{{str_limit($deficiency->dept_name, 20)}}</span>
+						<span class="hidden-md visible-lg hidden-xl">{{str_limit($deficiency->dept_name, 35)}}</span>
 
 					@hasRole('staff')
 						</a>
@@ -143,16 +143,18 @@
 						</span>
 					</td>	
 
-					<td><a href="{{$deficiency->staff->linkTo()}}">
-						{{$deficiency->postedBy()}}
-					</a></td>
+					<td>
+						<a href="{{Staff::find($deficiency->staff_id)->linkTo()}}">
+						{{Staff::find($deficiency->staff_id)->name()}}
+					</a>
+					</td>
 
-					<td title="{{ $deficiency->postDateTime() }}" data-toggle="tooltip">
-						{{ $deficiency->postDate() }}
+					<td title="{{ Deficiency::find($deficiency->id)->postDateTime() }}" data-toggle="tooltip">
+						{{ Deficiency::find($deficiency->id)->postDate() }}
 					</td>
 
 					<td>
-						@userInSameDepartment($deficiency->department)
+						{{-- @userInSameDepartment($deficiency->department) --}}
 								{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
 
 									{{Form::button('<span class="glyphicon glyphicon-ok"></span>', 
@@ -165,7 +167,8 @@
 {{-- 						<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
 						&nbsp;
 						<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
- --}}						@enduserInSameDepartment
+ --}}					
+ 	{{-- @enduserInSameDepartment --}}
 					</td>
 				</tr>
 
