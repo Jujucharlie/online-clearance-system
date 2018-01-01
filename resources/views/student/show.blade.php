@@ -6,18 +6,6 @@
 		document.title = '{{$student->name()}}' + ' - ' + document.title;
 	</script>
 
-	@php
-		if(isset($_GET['sort'])){
-			$sort = $_GET['sort'];
-		}
-		else $sort = null;
-		if(isset($_GET['order'])){
-			$order = $_GET['order'];
-		}
-		else $order = null;
-	@endphp
-
-
 	@if(isset($student))
 	<table class="table table-striped">
 		<tr><th>Name</th>
@@ -50,12 +38,11 @@
 
 		</table>
 
-
 		<h4 class="page-header">
 			Deficiencies
 		</h4>
 
-		<div id="deficiency-table">
+		<div id="def">
 			<table class="table table-striped">
 
 				<tr>
@@ -66,7 +53,7 @@
 							@else
 							asc
 							@endif
-							">Department
+							#def">Department
 							@if($sort=="department")
 								@include('helpers.sorticons')
 							@endif
@@ -79,7 +66,7 @@
 							@else
 							asc
 							@endif
-							">Title
+							#def">Title
 							@if($sort=="title")
 								@include('helpers.sorticons')
 							@endif
@@ -93,7 +80,7 @@
 							@else
 							asc
 							@endif
-							">Posted By
+							#def">Posted By
 							@if($sort=="staff")
 								@include('helpers.sorticons')
 							@endif
@@ -106,7 +93,7 @@
 							@else
 							asc
 							@endif
-							">Posted On
+							#def">Posted On
 							@if($sort=="date")
 								@include('helpers.sorticons')
 							@endif
@@ -121,12 +108,18 @@
 					@foreach($deficiencies as $deficiency)
 
 					<tr>
-						<td><a href="/department/{{$deficiency->department->short_name}}">
+						<td>
+							@hasRole('staff')
+								<a href="/department/{{$deficiency->department->short_name}}">
+							@endhasRole
 						<span class="visible-xs" title="{{$deficiency->department->name}}" data-toggle="tooltip">
 							{{strtoupper($deficiency->department->short_name)}}
 						</span>
 						<span class="hidden-xs">{{$deficiency->department->name}}</span>
-					</a></td>
+					@hasRole('staff')
+						</a>
+					@endhasRole
+					</td>
 
 					<td>{{$deficiency->title}}</td>
 
@@ -161,15 +154,17 @@
 
 			</table>
 
-				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->render() }}
-		</div>
+			<div class="pagination-links pull-right">			
+				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->fragment('def')->links() }}
+			</div>		
+			</div>
 
 
-		@hasRole('staff')
+{{-- 		@hasRole('staff')
 		<a title="File deficiency" href="#" class="btn btn-danger btn-sm pull-right">ADD NEW <span class="glyphicon glyphicon-plus"></span></a>
 
 		@endhasRole
-
+ --}}
 
 		@endif
 	</div>

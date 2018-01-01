@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -14,14 +15,14 @@ class StudentController extends Controller
 	}
 
 
-    public function show($slug)
+    public function show($slug, Request $request)
     {
         $student = Student::whereSlug($slug)->first();
         if($student){
 
             //column sort
-            if(isset($_GET['sort'])){
-                switch($_GET['sort']){
+            if($request->has('sort')){
+                switch($request->input('sort')){
                     case "department": 
                         $sort = "department_id";
                         break;
@@ -34,6 +35,7 @@ class StudentController extends Controller
                     case "title":
                         $sort = "title";
                         break;
+                    case "date":
                     default:
                         $sort = "created_at";
                 }
@@ -41,16 +43,26 @@ class StudentController extends Controller
                 $sort = "created_at";
             }
 
-            //sort order
-            if(isset($_GET['order'])){
-                $order = $_GET['order'] == "asc" ? "asc" : "desc";
+            if($request->has('order')){
+                switch($request->input('order')){
+                    case "asc":
+                        $order = "asc";
+                        break;
+                    case "desc":
+                    default:
+                        $order = "desc";
+                }
             }else{
                 $order = "desc";
             } 
 
             $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
-            return view('student.show', compact(['student', 'deficiencies']));
-        }
+
+            $sort = $request->input('sort');
+            $order = $request->input('order');
+
+            return view('student.show', compact(['student', 'deficiencies', 'sort', 'order']));
+        }//end if($student)
 
         //Only evaluates the first numeric part (student number)
         //everything that comes after the student number is ignored
