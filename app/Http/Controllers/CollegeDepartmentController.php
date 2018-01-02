@@ -10,7 +10,6 @@ class CollegeDepartmentController extends Controller
 {
     public function show($college, $department)
     {
-    	// $department = Department::whereShortName($department)->firstOrFail();
     	$department = College::whereShortName($college)->firstOrFail()->departments->where('short_name', $department)->first();
 
     	if($department)

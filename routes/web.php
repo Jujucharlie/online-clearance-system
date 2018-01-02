@@ -18,6 +18,8 @@ Route::resource('staff', 'StaffController');
 
 Route::resource('deficiency', 'DeficiencyController');
 
+Route::resource('student.deficiency', 'StudentDeficiencyController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

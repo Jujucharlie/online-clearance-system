@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\URL;
 class DeficiencyController extends Controller
 {
 
-	//Triggered when authorized user clicks "delete" button
-	public function destroy($id)
+	public function __construct(){
+		$this->middleware('studentprofile');
+	}
+
+
+	//Triggered when authorized user clicks "complete" button
+	public function update($id)
 	{
 
 		$def = Deficiency::findOrFail($id);
@@ -32,10 +37,10 @@ class DeficiencyController extends Controller
 
 		//Log action
 		activity()
-			->performedOn($def)
-			->causedBy(Auth::user())
-			->withProperties(['completed' => true])
-			->log('Mark deficiency as compelted.');
+		->performedOn($def)
+		->causedBy(Auth::user())
+		->withProperties(['completed' => true])
+		->log('Marked deficiency as compelted.');
 
 		//Redirect
 		$previous = URL::previous() . "#def";

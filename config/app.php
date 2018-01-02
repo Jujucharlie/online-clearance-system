@@ -231,7 +231,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Staff' => App\Staff::class,
         'Deficiency' => App\Deficiency::class,
-        'Department' => App\Department::class
+        'Department' => App\Department::class,
+        'Student' => App\Student::class,
 
     ],
 

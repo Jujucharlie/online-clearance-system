@@ -7,36 +7,8 @@
 	</script>
 
 	@if(isset($student))
-	<table class="table table-striped">
-		<tr><th>Name</th>
-			<td>{{$student->name()}}</td>
-			<td rowspan="5">
-				<img src="{{$student->picture()}}" style="max-height: 180px; border: 2px solid #021a40;">
-			</td>
-		</tr>
-		<tr><th>Student number</th><td>{{$student->student_number()}}</td></tr>
-		<tr><th>Program</th>
-			<td>
-				<a href="/program/{{$student->program->short_name}}">
-					{{$student->program->name}}
-				</a></td>
 
-			</tr>
-			<tr>
-				<th>Department</th>
-				<td><a href="/department/{{$student->department()->short_name}}">
-					{{$student->department()->name}}
-				</a></td>
-			</tr>
-			<tr>
-				<th>College</th>			
-				<td><a href="/college/{{$student->college()->short_name}}">
-					{{ $student->college()->name }}
-				</a></td>
-
-			</tr>
-
-		</table>
+		@include('student.information')
 
 		<h4 class="page-header">
 			Deficiencies
@@ -126,14 +98,14 @@
 						@endhasRole
 					</td>
 					<td data-toggle="tooltip" title="{{$deficiency->title}}">
-						<span class="hidden-lg">
+						<a href="{{Student::find($deficiency->student_id)->linkTo()}}/deficiency/{{$deficiency->id}}">						<span class="hidden-lg">
 							{{str_limit($deficiency->title, 25)}}	
 						</span>
 
 						<span class="visible-lg">
 							{{str_limit($deficiency->title, 35)}}
 						</span>
-					</td>
+					</a>					</td>
 
 					<td class="visible-md visible-lg visible-xl hidden-sm hidden-xs" data-toggle="tooltip" title="{{$deficiency->note}}">
 						<span class="hidden-lg">
@@ -152,15 +124,15 @@
 					</td>
 
 					<td title="{{ Deficiency::find($deficiency->id)->postDateTime() }}" data-toggle="tooltip">
-						<span class="pull-right">{{ Deficiency::find($deficiency->id)->postDate() }}
+						<span>{{ Deficiency::find($deficiency->id)->postDate() }}
 						</span>
 					</td>
 
 					<td>
 						@userInSameDepartment(Department::find($deficiency->department_id))
 						{{ Form::open([
-							'method' => 'DELETE',
-							'route' => ['deficiency.destroy', $deficiency->id]])}}
+							'method' => 'PATCH',
+							'route' => ['deficiency.update', $deficiency->id]])}}
 
 						{{ Form::button('<span class="glyphicon glyphicon-ok"></span>', 
 							array('type' => 'submit', 

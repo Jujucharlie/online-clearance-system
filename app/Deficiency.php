@@ -42,6 +42,11 @@ class Deficiency extends Model
         return $this->created_at->toDayDateTimeString();
     }
 
+    public function completionStatus()
+    {
+        return $this->completed? "Complete" : "Incomplete";
+    }
+
     public function userInSameDepartment()
     {
         $user = Auth::user();
