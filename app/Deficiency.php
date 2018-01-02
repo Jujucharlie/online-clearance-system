@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Deficiency extends Model
 {
@@ -39,5 +40,18 @@ class Deficiency extends Model
     public function postDateTime()
     {
         return $this->created_at->toDayDateTimeString();
+    }
+
+    public function userInSameDepartment()
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            abort(403);
+        } 
+
+        $staff = Staff::whereUserId($user->id)->firstOrFail();
+
+        return $this->department === $staff->department;
     }
 }
