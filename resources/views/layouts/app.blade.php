@@ -70,8 +70,9 @@
                 </div>
             </div>
         </nav>
-
+        
         @yield('content')
+
     </div>
 
     <!-- Scripts -->
@@ -80,6 +81,8 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip({container: 'body'}); 
         });
+        $('#flash-overlay-modal').modal();
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(2000);
     </script>
 </body>
 </html>

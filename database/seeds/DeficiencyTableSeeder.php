@@ -28,6 +28,7 @@ class DeficiencyTableSeeder extends Seeder
         	$def->staff_id = $staff_id;
         	$def->department_id = Staff::find($staff_id)->department_id;
             $def->created_at = Carbon::createFromTimeStamp(rand($endDate->timestamp, $startDate->timestamp));
+            $def->completed = false;
         	$def->save();
         }
 

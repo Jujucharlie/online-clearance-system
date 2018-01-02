@@ -43,6 +43,8 @@
 		</h4>
 
 		<div id="def">
+			@include('flash::message')
+
 			<table class="table table-striped">
 
 				<tr>
@@ -156,19 +158,21 @@
 
 					<td>
 						@userInSameDepartment(Department::find($deficiency->department_id))
-						{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
+						{{ Form::open([
+							'method' => 'DELETE',
+							'route' => ['deficiency.destroy', $deficiency->id]])}}
 
-						{{Form::button('<span class="glyphicon glyphicon-ok"></span>', 
+						{{ Form::button('<span class="glyphicon glyphicon-ok"></span>', 
 							array('type' => 'submit', 
 								'class' => 'btn btn-success btn-xs',
 								'data-toggle' => 'tooltip',
 								'title' => 'Mark as completed'
 								)) }}	
-								{{ Form::close()}}
+								{{ Form::close() }}
 {{-- 								<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
 								&nbsp;
 								<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
- --}}
+								--}}
 								@enduserInSameDepartment
 							</td>
 						</tr>

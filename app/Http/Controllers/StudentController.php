@@ -25,20 +25,20 @@ class StudentController extends Controller
             if($request->has('sort')){
                 switch($request->input('sort')){
                     case "department": 
-                        $sort = "dept_short_name";
-                        break;
+                    $sort = "dept_short_name";
+                    break;
                     case "staff":
-                        $sort = "staff_slug";
-                        break;
+                    $sort = "staff_slug";
+                    break;
                     case "date":
-                        $sort = "created_at";
-                        break;
+                    $sort = "created_at";
+                    break;
                     case "title":
-                        $sort = "title";
-                        break;
+                    $sort = "title";
+                    break;
                     case "date":
                     default:
-                        $sort = "created_at";
+                    $sort = "created_at";
                 }
             }else{
                 $sort = "created_at";
@@ -47,11 +47,11 @@ class StudentController extends Controller
             if($request->has('order')){
                 switch($request->input('order')){
                     case "asc":
-                        $order = "asc";
-                        break;
+                    $order = "asc";
+                    break;
                     case "desc":
                     default:
-                        $order = "desc";
+                    $order = "desc";
                 }
             }else{
                 $order = "desc";
@@ -60,13 +60,14 @@ class StudentController extends Controller
             // $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
 
             $deficiencies = DB::table('deficiencies')
-                            ->where('student_id', '=', $student->id)
-                            ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
-                            ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
-                            ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
-                            ->orderBy($sort, $order)
-                            ->orderBy('id', $order)
-                            ->simplePaginate($items_per_page);
+            ->where('student_id', '=', $student->id)
+            ->where('completed', '=', false)
+            ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
+            ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
+            ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
+            ->orderBy($sort, $order)
+            ->orderBy('id', $order)
+            ->simplePaginate($items_per_page);
 
             $sort = $request->input('sort');
             $order = $request->input('order');
