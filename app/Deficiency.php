@@ -59,4 +59,9 @@ class Deficiency extends Model
 
         return $this->department == $staff->department;
     }
+
+    public function linkTo()
+    {
+        return $this->student->linkTo() . "/deficiency/" . $this->id;
+    }
 }

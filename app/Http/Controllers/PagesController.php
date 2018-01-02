@@ -10,6 +10,7 @@ use App\Staff;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class PagesController extends Controller
 {
@@ -64,5 +65,11 @@ class PagesController extends Controller
     public function user()
     {
         return view('pages.user');
+    }
+
+    public function logs()
+    {
+        $logs = Activity::all()->sortByDesc('created_at');
+       return view('pages.logs' , compact('logs')); 
     }
 }

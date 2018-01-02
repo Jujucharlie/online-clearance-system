@@ -19,8 +19,10 @@
 						<td><a href="/college/{{$staff->college()->short_name}}">
 								{{$staff->college()->name}}
 						</a></td>
-					
-
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{$staff->email()}}</td>
 				</tr>
 			</table>
 
