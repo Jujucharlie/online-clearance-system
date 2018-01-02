@@ -47,6 +47,9 @@ class Student extends AbstractUser
     public function picture()
     {
         $pictures = [
+            'wall' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4237.png&w=350&h=254',
+            'kpoz' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3102531.png&w=350&h=254',
+            'lonzo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4066421.png&w=350&h=254',
             'adams'=> 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991235.png&w=350&h=254',
             'curry' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&w=350&h=254',
             'westbrook' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3468.png&w=350&h=254',
@@ -60,7 +63,8 @@ class Student extends AbstractUser
             'thomas' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6472.png&w=350&h=254',
             'pg13' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4251.png&w=350&h=254',
             'melo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1975.png&w=350&h=254',
-            'bean' => 'http://www.todayifoundout.com/wp-content/uploads/2011/12/Mr-bean-e1324022926524.jpg',
+            'blake' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3989.png&w=350&h=254',
+            'drose' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3456.png&w=350&h=254',
         ];
 
         $rand_key = array_rand($pictures);

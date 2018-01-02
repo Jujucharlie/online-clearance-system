@@ -55,7 +55,7 @@
 							@endif
 							#def">Department
 							@if($sort=="department")
-								@include('helpers.sorticons')
+							@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
@@ -68,11 +68,11 @@
 							@endif
 							#def">Title
 							@if($sort=="title")
-								@include('helpers.sorticons')
+							@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
-		
+
 					<th class="visible-md visible-lg visible-xl hidden-sm hidden-xs">Note</th>
 					<th>
 						<a href="{{ url()->current() . "?sort=staff&page=1&order="}}
@@ -83,7 +83,7 @@
 							@endif
 							#def">Posted By
 							@if($sort=="staff")
-								@include('helpers.sorticons')
+							@include('helpers.sorticons')
 							@endif
 						</a>
 					</th>
@@ -96,32 +96,32 @@
 							@endif
 							#def">Posted On
 							@if($sort=="date")
-								@include('helpers.sorticons')
+							@include('helpers.sorticons')
 							@endif
 
 						</a>
 					</th>
-						@hasRole('staff')	
-							<th>Actions</th>
-						@endhasRole
-					</tr>
-
-					@foreach($deficiencies as $deficiency)
-
-					<tr>
-						<td title="{{$deficiency->dept_name}}" data-toggle="tooltip">
-							@hasRole('staff')
-								<a href="/department/{{$deficiency->dept_short_name}}">
-							@endhasRole
-						<span class="visible-sm visible-xs" >
-							{{strtoupper($deficiency->dept_short_name)}}
-						</span>
-						<span class="hidden-sm hidden-xs visible-md">{{str_limit($deficiency->dept_name, 20)}}</span>
-						<span class="hidden-md visible-lg hidden-xl">{{str_limit($deficiency->dept_name, 35)}}</span>
-
-					@hasRole('staff')
-						</a>
+					@hasRole('staff')	
+					<th>Actions</th>
 					@endhasRole
+				</tr>
+
+				@foreach($deficiencies as $deficiency)
+
+				<tr>
+					<td title="{{$deficiency->dept_name}}" data-toggle="tooltip">
+						@hasRole('staff')
+						<a href="/department/{{$deficiency->dept_short_name}}">
+							@endhasRole
+							<span class="visible-sm visible-xs" >
+								{{strtoupper($deficiency->dept_short_name)}}
+							</span>
+							<span class="hidden-sm hidden-xs visible-md">{{str_limit($deficiency->dept_name, 20)}}</span>
+							<span class="hidden-md visible-lg hidden-xl">{{str_limit($deficiency->dept_name, 35)}}</span>
+
+							@hasRole('staff')
+						</a>
+						@endhasRole
 					</td>
 					<td data-toggle="tooltip" title="{{$deficiency->title}}">
 						<span class="hidden-lg">
@@ -145,48 +145,49 @@
 
 					<td>
 						<a href="{{Staff::find($deficiency->staff_id)->linkTo()}}">
-						{{Staff::find($deficiency->staff_id)->name()}}
-					</a>
+							{{Staff::find($deficiency->staff_id)->name()}}
+						</a>
 					</td>
 
 					<td title="{{ Deficiency::find($deficiency->id)->postDateTime() }}" data-toggle="tooltip">
-						{{ Deficiency::find($deficiency->id)->postDate() }}
+						<span class="pull-right">{{ Deficiency::find($deficiency->id)->postDate() }}
+						</span>
 					</td>
 
 					<td>
-						{{-- @userInSameDepartment($deficiency->department) --}}
-								{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
+						@userInSameDepartment(Department::find($deficiency->department_id))
+						{{Form::open(['method' => 'DELETE', 'route' => ['deficiency.destroy', $deficiency->id]])}}
 
-									{{Form::button('<span class="glyphicon glyphicon-ok"></span>', 
-										array('type' => 'submit', 
-													'class' => 'btn btn-success btn-xs',
-													'data-toggle' => 'tooltip',
-													'title' => 'Mark as completed'
-									)) }}	
+						{{Form::button('<span class="glyphicon glyphicon-ok"></span>', 
+							array('type' => 'submit', 
+								'class' => 'btn btn-success btn-xs',
+								'data-toggle' => 'tooltip',
+								'title' => 'Mark as completed'
+								)) }}	
 								{{ Form::close()}}
-{{-- 						<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
-						&nbsp;
-						<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
- --}}					
- 	{{-- @enduserInSameDepartment --}}
-					</td>
-				</tr>
+{{-- 								<a href="#"><span class="glyphicon glyphicon-edit" title="Edit"></span></a>
+								&nbsp;
+								<a href="#"><span class="glyphicon glyphicon-remove" title="Remove"></span></a>
+ --}}
+								@enduserInSameDepartment
+							</td>
+						</tr>
 
-				@endforeach
+						@endforeach
 
-			</table>
+					</table>
 
-			<div class="pagination-links pull-right">			
-				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->fragment('def')->links() }}
-			</div>		
-			</div>
+					<div class="pagination-links pull-right">			
+						{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])->fragment('def')->links() }}
+					</div>		
+				</div>
 
 
 {{-- 		@hasRole('staff')
 		<a title="File deficiency" href="#" class="btn btn-danger btn-sm pull-right">ADD NEW <span class="glyphicon glyphicon-plus"></span></a>
 
 		@endhasRole
- --}}
+		--}}
 
 		@endif
 	</div>

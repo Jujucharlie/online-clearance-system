@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deficiency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class DeficiencyController extends Controller
 {
@@ -18,6 +19,7 @@ class DeficiencyController extends Controller
 		//Log action
 		//
 		//Redirect
-		return redirect()->back();
+		$previous = URL::previous() . "#def";
+		return redirect()->away($previous);
 	}
 }

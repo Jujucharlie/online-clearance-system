@@ -17,6 +17,7 @@ class StudentController extends Controller
 
     public function show($slug, Request $request)
     {
+        $items_per_page = 5;
         $student = Student::whereSlug($slug)->first();
         if($student){
 
@@ -64,7 +65,8 @@ class StudentController extends Controller
                             ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
                             ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
                             ->orderBy($sort, $order)
-                            ->simplePaginate(5);
+                            ->orderBy('id', $order)
+                            ->simplePaginate($items_per_page);
 
             $sort = $request->input('sort');
             $order = $request->input('order');

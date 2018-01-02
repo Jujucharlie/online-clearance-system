@@ -229,7 +229,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Staff' => App\Staff::class,
-        'Deficiency' => App\Deficiency::class
+        'Deficiency' => App\Deficiency::class,
+        'Department' => App\Department::class
 
     ],
 
