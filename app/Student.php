@@ -46,29 +46,30 @@ class Student extends AbstractUser
      */
     public function picture()
     {
-        $pictures = [
-            'wall' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4237.png&w=350&h=254',
-            'kpoz' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3102531.png&w=350&h=254',
-            'lonzo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4066421.png&w=350&h=254',
-            'adams'=> 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991235.png&w=350&h=254',
-            'curry' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&w=350&h=254',
-            'westbrook' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3468.png&w=350&h=254',
-            'harden' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3992.png&w=350&h=254',
-            'scal' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1021.png&w=350&h=254',
-            'kobe' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254',
-            'lebron' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254',
-            'durant' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3202.png&w=350&h=254',
-            'duncan' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/215.png&w=350&h=254',
-            'kyrie' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6442.png&w=350&h=254',
-            'thomas' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6472.png&w=350&h=254',
-            'pg13' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4251.png&w=350&h=254',
-            'melo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1975.png&w=350&h=254',
-            'blake' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3989.png&w=350&h=254',
-            'drose' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3456.png&w=350&h=254',
-        ];
+        // $pictures = [
+        //     'wall' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4237.png&w=350&h=254',
+        //     'kpoz' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3102531.png&w=350&h=254',
+        //     'lonzo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4066421.png&w=350&h=254',
+        //     'adams'=> 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991235.png&w=350&h=254',
+        //     'curry' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&w=350&h=254',
+        //     'westbrook' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3468.png&w=350&h=254',
+        //     'harden' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3992.png&w=350&h=254',
+        //     'scal' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1021.png&w=350&h=254',
+        //     'kobe' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254',
+        //     'lebron' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254',
+        //     'durant' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3202.png&w=350&h=254',
+        //     'duncan' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/215.png&w=350&h=254',
+        //     'kyrie' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6442.png&w=350&h=254',
+        //     'thomas' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6472.png&w=350&h=254',
+        //     'pg13' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4251.png&w=350&h=254',
+        //     'melo' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1975.png&w=350&h=254',
+        //     'blake' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3989.png&w=350&h=254',
+        //     'drose' => 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3456.png&w=350&h=254',
+        // ];
 
-        $rand_key = array_rand($pictures);
-        return $pictures[$rand_key]; 
+        // $rand_key = array_rand($pictures);
+        // return $pictures[$rand_key]; 
+        return asset('images/id/melbs.jpg');
     }
 
 
