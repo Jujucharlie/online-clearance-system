@@ -46,9 +46,19 @@ class PagesController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        $student = Student::whereUserId($user->id)->firstOrFail();
-        
-        return redirect()->action('StudentController@show', ['slug' => $student->slug]);
+        if(!$user){
+            abort(404);
+        }
+
+        if($user->hasRole('student')){
+         $student = Student::whereUserId($user->id)->firstOrFail();
+         return redirect()->action('StudentController@show', ['slug' => $student->slug]);
+        }
+
+        if($user->hasRole('staff')){
+            $staff = Staff::whereUserId($user->id)->firstOrFail();
+            return redirect()->action('StaffController@show', ['slug' => $staff->slug]);
+        }
     }
 
     public function user()
