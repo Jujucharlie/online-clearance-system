@@ -22,17 +22,21 @@ class DeficiencyController extends Controller
 
 			return redirect()->back();
 		}
-		//Display confirmation dialog (modal, maybe?)
 		
-
+		//Flash notification confirming user's action
 		$flash_message = "Deficiency <strong>" . $def->title . "</strong> marked as completed.";
 		flash($flash_message)->success();
 
 		$def->completed = true;
 		$def->save();
-		//If confirmed, delete item from database
+
 		//Log action
-		//
+		activity()
+			->performedOn($def)
+			->causedBy(Auth::user())
+			->withProperties(['completed' => true])
+			->log('Mark deficiency as compelted.');
+
 		//Redirect
 		$previous = URL::previous() . "#def";
 		return redirect()->away($previous);

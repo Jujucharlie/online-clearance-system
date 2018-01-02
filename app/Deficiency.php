@@ -52,6 +52,6 @@ class Deficiency extends Model
 
         $staff = Staff::whereUserId($user->id)->firstOrFail();
 
-        return $this->department === $staff->department;
+        return $this->department == $staff->department;
     }
 }
