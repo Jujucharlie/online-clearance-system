@@ -25,7 +25,7 @@
 
 		<tr>
 			<th>Staff</th>
-			<td>{{$deficiency->staff->name()}}</td>
+			<td><a href="{{$deficiency->staff->linkTo()}}">{{$deficiency->staff->name()}}</a></td>
 		</tr>
 
 		<tr>
@@ -44,7 +44,7 @@
 		</tr>
 
 		@endif
-		
+
 	</table>
 </div>
 @endsection

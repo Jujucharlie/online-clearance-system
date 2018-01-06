@@ -4,24 +4,21 @@ namespace App;
 
 use App\AbstractUser;
 
-
 class Student extends AbstractUser
 {
-
-	public function program()
-	{
-		return $this->belongsTo('App\Program');
-	}
+    public function program()
+    {
+        return $this->belongsTo('App\Program');
+    }
 
     public function department()
     {
-    	return $this->program->department;
+        return $this->program->department;
     }
 
     public function college()
     {
         return $this->department()->college;
-
     }
 
     /**
@@ -30,10 +27,10 @@ class Student extends AbstractUser
      */
     public function student_number()
     {
-    	$year = floor($this->student_number / 100000);
-    	$num = $this->student_number % 100000;
+        $year = floor($this->student_number / 100000);
+        $num = $this->student_number % 100000;
 
-    	return $year . '-' . str_pad($num, 5, '0', STR_PAD_LEFT);
+        return $year . '-' . str_pad($num, 5, '0', STR_PAD_LEFT);
     }
 
     public function deficiencies()
@@ -68,7 +65,7 @@ class Student extends AbstractUser
         // ];
 
         // $rand_key = array_rand($pictures);
-        // return $pictures[$rand_key]; 
+        // return $pictures[$rand_key];
         return asset('images/id/melbs.jpg');
     }
 

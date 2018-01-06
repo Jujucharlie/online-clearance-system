@@ -9,12 +9,12 @@ class Deficiency extends Model
 {
     public function student()
     {
-    	return $this->belongsTo('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function staff()
     {
-    	return $this->belongsTo('App\Staff');
+        return $this->belongsTo('App\Staff');
     }
 
     public function postedBy()
@@ -24,7 +24,7 @@ class Deficiency extends Model
 
     public function department()
     {
-    	return $this->belongsTo('App\Department');
+        return $this->belongsTo('App\Department');
     }
 
     /*
@@ -51,9 +51,9 @@ class Deficiency extends Model
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             abort(403);
-        } 
+        }
 
         $staff = Staff::whereUserId($user->id)->firstOrFail();
 

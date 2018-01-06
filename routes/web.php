@@ -22,7 +22,9 @@ Route::resource('student.deficiency', 'StudentDeficiencyController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+	return redirect('/profile');
+})->name('home');
 
 Route::get('/logs', 'PagesController@logs');
 

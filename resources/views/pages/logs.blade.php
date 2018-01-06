@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+<script>
+	document.title = 'Logs - ' + document.title;
+</script>
 <div class="container">
 
 	<h3 class="page-heading">Logs</h3>
@@ -20,9 +24,10 @@
 				<td>{{$log->description}}</td>
 				<td><a href="{{$log->subject->linkTo()}}">{{$log->subject->title}}</a></td>
 				<td><a href="{{$log->subject->student->linkTo()}}">{{$log->subject->student->name()}}</a></td>
-				<td>{{$log->created_at}}</td>
+				<td>{{$log->created_at->toDayDateTimeString()}}</td>
 			</tr>
 		@endforeach	
+		
 	</table>
 </div>
 @endsection

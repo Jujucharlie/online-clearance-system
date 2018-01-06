@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class College extends Model
 {
-
     protected $fillable = ['name', 'short_name'];
 
     public function departments()
     {
-    	return $this->hasMany('App\Department');
+        return $this->hasMany('App\Department');
     }
 
     /**
@@ -22,7 +21,7 @@ class College extends Model
     public function staff()
     {
         $staff = new Collection;
-        foreach($this->departments as $department){
+        foreach ($this->departments as $department) {
             $staff->push($department->staff);
         }
         return $staff->collapse();
@@ -36,7 +35,7 @@ class College extends Model
     {
         $programs = new Collection;
 
-        foreach($this->departments as $department){
+        foreach ($this->departments as $department) {
             $programs->push($department->programs);
         }
 
@@ -51,7 +50,7 @@ class College extends Model
     {
         $students = new Collection;
 
-        foreach($this->programs() as $program){
+        foreach ($this->programs() as $program) {
             $students->push($program->students);
         }
 

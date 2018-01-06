@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 
 class StudentDeficiencyController extends Controller
 {
-	public function __construct(){
-		$this->middleware('studentprofile');
-	}    
+    public function __construct()
+    {
+        $this->middleware('studentprofile');
+    }
 
-	public function show($student, $deficiency)
-	{
-		$student = Student::whereSlug($student)->firstOrFail();
-		$deficiency = $student->deficiencies->find($deficiency);
+    public function show($student, $deficiency)
+    {
+        $student = Student::whereSlug($student)->firstOrFail();
+        $deficiency = $student->deficiencies->find($deficiency);
 
-		return view('student.deficiency', compact('deficiency', 'student'));
-	}
-
+        return view('student.deficiency', compact('deficiency', 'student'));
+    }
 }

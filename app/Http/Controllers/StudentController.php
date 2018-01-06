@@ -9,65 +9,64 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-
-	public function __construct(){
-		$this->middleware('studentprofile');
-	}
-
+    public function __construct()
+    {
+        $this->middleware('studentprofile');
+    }
 
     public function show($slug, Request $request)
     {
         $items_per_page = 5;
         $student = Student::whereSlug($slug)->first();
-        if($student){
 
+        if ($student) {
             //column sort
-            if($request->has('sort')){
-                switch($request->input('sort')){
-                    case "department": 
+            if ($request->has('sort')) {
+                switch ($request->input('sort')) {
+                case "department":
                     $sort = "dept_short_name";
                     break;
-                    case "staff":
+                case "staff":
                     $sort = "staff_slug";
                     break;
-                    case "date":
+                case "date":
                     $sort = "created_at";
                     break;
-                    case "title":
+                case "title":
                     $sort = "title";
                     break;
-                    case "date":
-                    default:
-                    $sort = "created_at";
+                case "date":
+                default:
+                $sort = "created_at";
                 }
-            }else{
+            } else {
                 $sort = "created_at";
             }
 
-            if($request->has('order')){
-                switch($request->input('order')){
-                    case "asc":
+            if ($request->has('order')) {
+                switch ($request->input('order')) {
+                case "asc":
                     $order = "asc";
                     break;
-                    case "desc":
-                    default:
-                    $order = "desc";
-                }
-            }else{
+                case "desc":
+                default:
                 $order = "desc";
-            } 
+                }
+            } else {
+                $order = "desc";
+            }
 
             // $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
 
             $deficiencies = DB::table('deficiencies')
-            ->where('student_id', '=', $student->id)
-            ->where('completed', '=', false)
-            ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
-            ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
-            ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
-            ->orderBy($sort, $order)
-            ->orderBy('id', $order)
-            ->simplePaginate($items_per_page);
+                ->where('student_id', '=', $student->id)
+                ->where('completed', '=', false)
+                ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
+                ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
+                ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
+                ->orderBy($sort, $order)
+                ->orderBy('title', $order)
+                ->simplePaginate($items_per_page);
 
             $sort = $request->input('sort');
             $order = $request->input('order');
@@ -83,6 +82,5 @@ class StudentController extends Controller
         $student_number = intval($slug);
         $student = Student::whereStudentNumber($student_number)->firstOrFail();
         return redirect()->action('StudentController@show', ['slug' => $student->slug]);
-        
     }
 }

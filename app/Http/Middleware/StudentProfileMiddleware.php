@@ -16,32 +16,26 @@ class StudentProfileMiddleware
      */
     public function handle($request, Closure $next)
     {
-
-        if(Auth::guest()){
+        if (Auth::guest()) {
             abort(403);
-        }
-
-        else{
+        } else {
             $user = $request->user();
 
-            if($user->hasRole('staff') || $user->hasRole('admin')){
+            if ($user->hasRole('staff') || $user->hasRole('admin')) {
                 return $next($request);
             }
 
-            if($user->hasRole('student')){
-
-                $slug = $request->route('slug'); 
+            if ($user->hasRole('student')) {
+                $slug = $request->route('slug');
 
                 $student = Student::whereUserId($user->id)->first();
-                if($student->student_number == intval($request->student) 
+                if ($student->student_number == intval($request->student)
                     || $student->student_number == intval($slug)
-                    ){
-
+                    ) {
                     return $next($request);
                 }
                 abort(403);
             }
-            
         }
         // return $next($request);
     }

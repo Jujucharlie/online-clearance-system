@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-
     protected $fillable = [
                 'college_id',
                 'short_name',
@@ -16,17 +15,17 @@ class Department extends Model
 
     public function college()
     {
-    	return $this->belongsTo('App\College');
+        return $this->belongsTo('App\College');
     }
 
     public function programs()
     {
-    	return $this->hasMany('App\Program');
+        return $this->hasMany('App\Program');
     }
 
     public function staff()
     {
-    	return $this->hasMany('App\Staff');
+        return $this->hasMany('App\Staff');
     }
 
     
@@ -39,7 +38,7 @@ class Department extends Model
     {
         $students = new Collection;
 
-        foreach($this->programs as $program){
+        foreach ($this->programs as $program) {
             $students->push($program->students);
         }
 

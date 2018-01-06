@@ -9,42 +9,63 @@ use Illuminate\Support\Facades\URL;
 
 class DeficiencyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('studentprofile');
+    }
 
-	public function __construct(){
-		$this->middleware('studentprofile');
-	}
+
+    //Triggered when authorized user clicks "complete" button
+    public function update($id)
+    {
+        $def = Deficiency::findOrFail($id);
+
+        if (!$def->userInSameDepartment()) {
+            $flash_message = "Sorry. You do not have permission to perform that action.";
+            flash($flash_message)->error()->important();
+
+            return redirect()->back();
+        }
+
+        //Flash notification confirming user's action
+        $flash_message = "Deficiency <strong>" . $def->title . "</strong> marked as completed.";
+        flash($flash_message)->success();
+
+        $def->completed = true;
+        $def->save();
+
+        //Log action
+        activity()
+            ->performedOn($def)
+            ->causedBy(Auth::user())
+            ->withProperties(['completed' => $def->completed])
+            ->log('Marked deficiency as compelted.');
+
+        //Redirect
+        $previous = URL::previous() . "#def";
+        return redirect()->away($previous);
+    }
 
 
-	//Triggered when authorized user clicks "complete" button
-	public function update($id)
-	{
+    public function store()
+    {
+        $staff = Staff::where('user_id', '=', Auth::user()->id)->firstOrFail();
 
-		$def = Deficiency::findOrFail($id);
+        $validated_request = request()->validate([
+            'title' => 'required',
+            'note' => 'required',
+            'student_id' => 'required|digits:9'
+        ]);
+        $validated_request['staff_id'] = $staff->id;
+        $validated_request['department_id'] = $department_id;
+        $def = Deficiency::create($validated_request);
 
-		if(!$def->userInSameDepartment()){
-			$flash_message = "Sorry. You do not have permission to perform that action.";
-			flash($flash_message)->error()->important();
+        activity()
+            ->performedOn($def)
+            ->causedBy(Auth::user())
+            ->withProperties(['title' => $def->title])
+            ->log('Filed deficiency');
 
-			return redirect()->back();
-		}
-		
-		//Flash notification confirming user's action
-		$flash_message = "Deficiency <strong>" . $def->title . "</strong> marked as completed.";
-		flash($flash_message)->success();
-
-		$def->completed = true;
-		$def->save();
-
-		//Log action
-		activity()
-		->performedOn($def)
-		->causedBy(Auth::user())
-		->withProperties(['completed' => true])
-		->log('Marked deficiency as compelted.');
-
-		//Redirect
-		$previous = URL::previous() . "#def";
-		return redirect()->away($previous);
-	}
-
+        return redirect('some.path');
+    }
 }

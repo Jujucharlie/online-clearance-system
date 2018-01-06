@@ -16,16 +16,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::if('hasRole', function($role){
+        Blade::if('hasRole', function ($role) {
             return Auth::user()->hasRole($role);
         });
 
-        Blade::if('userInSameDepartment', function($department){
+        Blade::if('userInSameDepartment', function ($department) {
             $user = Auth::user();
             
-            if($user->hasRole('admin')) return true;
+            if ($user->hasRole('admin')) {
+                return true;
+            }
 
-            if($user->hasRole('staff')){
+            if ($user->hasRole('staff')) {
                 return Staff::whereUserId($user->id)->first()->department == $department;
             }
         });

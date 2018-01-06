@@ -16,11 +16,10 @@ class MustBeAdmin
      */
     public function handle($request, Closure $next)
     {
-
         $user = Auth::user();
 
-        if(isset($user)){
-            if($user->hasRole('admin')){
+        if (isset($user)) {
+            if ($user->hasRole('admin')) {
                 return $next($request);
             }
         }

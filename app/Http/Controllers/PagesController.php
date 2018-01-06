@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\College;
 use App\Department;
 use App\Program;
@@ -14,9 +13,8 @@ use Spatie\Activitylog\Models\Activity;
 
 class PagesController extends Controller
 {
-	public function index()
-	{
-	   
+    public function index()
+    {
         $colleges = College::all();
         $counts = [
                 'department' => Department::all()->count(),
@@ -25,38 +23,36 @@ class PagesController extends Controller
                 'student' => Student::all()->count()
                 ];
 
-		return view('pages.index', compact('colleges', 'counts'));
-	}
+        return view('pages.index', compact('colleges', 'counts'));
+    }
 
     public function program($short_name)
     {
+        $program = Program::where('short_name', $short_name)->first();
 
-    	$program = Program::where('short_name', $short_name)->first();
-
-    	return view('program.show', compact('program'));
+        return view('program.show', compact('program'));
     }
 
     public function department($short_name)
     {
+        $department = Department::where('short_name', $short_name)->first();
 
-    	$department = Department::where('short_name', $short_name)->first();
-
-    	return view('department.show', compact('department'));
+        return view('department.show', compact('department'));
     }
 
     public function profile()
     {
         $user = Auth::user();
-        if(!$user){
+        if (!$user) {
             abort(404);
         }
 
-        if($user->hasRole('student')){
-         $student = Student::whereUserId($user->id)->firstOrFail();
-         return redirect()->action('StudentController@show', ['slug' => $student->slug]);
+        if ($user->hasRole('student')) {
+            $student = Student::whereUserId($user->id)->firstOrFail();
+            return redirect()->action('StudentController@show', ['slug' => $student->slug]);
         }
 
-        if($user->hasRole('staff')){
+        if ($user->hasRole('staff')) {
             $staff = Staff::whereUserId($user->id)->firstOrFail();
             return redirect()->action('StaffController@show', ['slug' => $staff->slug]);
         }
@@ -70,6 +66,6 @@ class PagesController extends Controller
     public function logs()
     {
         $logs = Activity::all()->sortByDesc('created_at');
-       return view('pages.logs' , compact('logs')); 
+        return view('pages.logs', compact('logs'));
     }
 }
