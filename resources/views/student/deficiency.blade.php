@@ -25,7 +25,11 @@
 
 		<tr>
 			<th>Staff</th>
-			<td><a href="{{$deficiency->staff->linkTo()}}">{{$deficiency->staff->name()}}</a></td>
+			<td>
+				<a href="{{$deficiency->staff->linkTo()}}">
+					{{$deficiency->staff->name()}}
+				</a>
+			</td>
 		</tr>
 
 		<tr>
@@ -33,6 +37,10 @@
 			<td>{{$deficiency->postDate()}}</td>
 		</tr>
 
+		<tr>
+			<th>Updated on</th>
+			<td>{{$deficiency->updateDate()}}</td>
+		</tr>
 		<tr>
 			<th>Completion Status</th>
 			<td>{{$deficiency->completionStatus()}}</td>

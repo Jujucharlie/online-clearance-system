@@ -20,10 +20,22 @@
 
 		@foreach($logs as $log)
 			<tr>
-				<td><a href="{{Staff::whereUserId($log->causer->id)->first()->linkTo()}}">{{$log->causer->name}}</a></td>
+				<td><a
+					href="{{Staff::whereUserId($log->causer->id)
+						->first()->linkTo()}}">{{$log->causer->name}}
+					</a>
+				</td>
 				<td>{{$log->description}}</td>
-				<td><a href="{{$log->subject->linkTo()}}">{{$log->subject->title}}</a></td>
-				<td><a href="{{$log->subject->student->linkTo()}}">{{$log->subject->student->name()}}</a></td>
+				<td>
+					<a href="{{$log->subject->linkTo()}}">
+						{{$log->subject->title}}
+					</a>
+				</td>
+
+				<td><a href="{{$log->subject->student->linkTo()}}">
+						{{$log->subject->student->name()}}
+					</a>
+				</td>
 				<td>{{$log->created_at->toDayDateTimeString()}}</td>
 			</tr>
 		@endforeach	
