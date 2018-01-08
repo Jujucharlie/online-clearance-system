@@ -56,14 +56,15 @@ class StudentController extends Controller
                 $order = "desc";
             }
 
-            // $deficiencies = $student->deficiencies()->orderBy($sort, $order)->simplePaginate(5);
-
             $deficiencies = DB::table('deficiencies')
                 ->where('student_id', '=', $student->id)
                 ->where('completed', '=', false)
-                ->join('departments', 'departments.id', '=', 'deficiencies.department_id')
+				->join('departments',
+						'departments.id', '=', 'deficiencies.department_id')
                 ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
-                ->select('slug as staff_slug', 'name as dept_name', 'short_name as dept_short_name', 'deficiencies.*')
+				->select('slug as staff_slug', 
+						'name as dept_name', 
+						'short_name as dept_short_name', 'deficiencies.*')
                 ->orderBy($sort, $order)
                 ->orderBy('title', $order)
                 ->simplePaginate($items_per_page);
@@ -71,7 +72,8 @@ class StudentController extends Controller
             $sort = $request->input('sort');
             $order = $request->input('order');
 
-            return view('student.show', compact(['student', 'deficiencies', 'sort', 'order']));
+			return view('student.show',
+						compact(['student', 'deficiencies', 'sort', 'order']));
         }//end if($student)
 
         // Only evaluates the first numeric part (student number)
@@ -81,6 +83,7 @@ class StudentController extends Controller
         // HTTP 404 error if no student is found
         $student_number = intval($slug);
         $student = Student::whereStudentNumber($student_number)->firstOrFail();
-        return redirect()->action('StudentController@show', ['slug' => $student->slug]);
+		return redirect()->action('StudentController@show', 
+								 ['slug' => $student->slug]);
     }
 }

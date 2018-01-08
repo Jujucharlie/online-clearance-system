@@ -141,7 +141,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							<td>
 								<a href="{{Staff::find($deficiency->staff_id)
 												->linkTo()}}">
-									{{str_limit(Staff::find($deficiency->staff_id)
+								{{str_limit(Staff::find($deficiency->staff_id)
 												->name(), 20)}}
 								</a>
 							</td>
@@ -184,7 +184,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 								{{ Form::button('<span class="glyphicon 
 												glyphicon-edit"></span>', 
 												array('type' => 'submit', 
-												'class' => 'btn btn-success
+												'class' => 'btn btn-info
 															btn-xs',
 												'data-toggle' => 'tooltip',
 												'title' => 'Edit'
