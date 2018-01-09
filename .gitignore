@@ -1,4 +1,7 @@
 /node_modules
+*~
+*.swp
+*.swo
 /public/images/id
 /public/hot
 /public/storage

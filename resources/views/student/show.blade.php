@@ -162,7 +162,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 																->department_id))
 								{{ Form::open([
 									'method' => 'PATCH',
-									'route' => ['deficiency.update', 
+									'action' => ['DeficiencyController@complete', 
 												$deficiency->id],
 									'style' => 'display: inline-block'
 											])}}

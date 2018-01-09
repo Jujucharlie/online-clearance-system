@@ -16,7 +16,7 @@ class DeficiencyController extends Controller
 
 
     //Triggered when authorized user clicks "complete" button
-    public function update($id)
+    public function complete($id)
     {
         $def = Deficiency::findOrFail($id);
 	
@@ -43,13 +43,12 @@ class DeficiencyController extends Controller
     }
 
 
-	public function edit($id)
+	public function update($id)
 	{
 		$def = Deficiency::findOrFail($id);
 
         //Flash notification confirming user's action
-		$flash_message = "Deficiency <strong>" . 
-						$def->title . "</strong> marked as completed.";
+		$flash_message = "Item edited";
 
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
