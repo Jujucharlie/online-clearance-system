@@ -41,7 +41,7 @@
 				<div class="form-group">
 					{{ Form::label('completed', 'Completed') }}
 					{{ Form::checkbox('completed', $deficiency->completed,
-						array("class" => "form-control")
+						array("class"=> "form-control")
 					) }}
 				</div>
 				
