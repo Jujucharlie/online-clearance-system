@@ -19,17 +19,13 @@ class DeficiencyController extends Controller
     public function update($id)
     {
         $def = Deficiency::findOrFail($id);
-
-        if (!$def->userInSameDepartment()) {
-            $flash_message = "Sorry. You do not have permission to perform that action.";
-            flash($flash_message)->error()->important();
-
-            return redirect()->back();
-        }
-
+	
         //Flash notification confirming user's action
-        $flash_message = "Deficiency <strong>" . $def->title . "</strong> marked as completed.";
-        flash($flash_message)->success();
+		$flash_message = 
+			"Deficiency <strong>" 
+			. $def->title . "</strong> marked as completed.";
+
+		$def->checkDepartmentAndFlashMessage($flash_message);
 
         $def->completed = true;
         $def->save();
@@ -45,6 +41,21 @@ class DeficiencyController extends Controller
         $previous = URL::previous() . "#def";
         return redirect()->away($previous);
     }
+
+
+	public function edit($id)
+	{
+		$def = Deficiency::findOrFail($id);
+
+        //Flash notification confirming user's action
+		$flash_message = "Deficiency <strong>" . 
+						$def->title . "</strong> marked as completed.";
+
+		$def->checkDepartmentAndFlashMessage($flash_message);
+
+        $def->completed = true;
+        $def->save();
+	}
 
 
     public function store()
@@ -67,5 +78,7 @@ class DeficiencyController extends Controller
             ->log('Filed deficiency');
 
         return redirect('some.path');
-    }
+	}
+
+	
 }

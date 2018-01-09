@@ -18,8 +18,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 				@include('flash::message')
 
 				<table class="table table-striped">
-
+					
 					<tr>
+
 						<th>
 							<a href="{{ url()->current() 
 								. "?sort=department&page=1&order="}}
@@ -34,6 +35,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							@endif
 							</a>
 						</th>
+
 						<th>
 							<a href="{{ url()->current()
 								. "?sort=title&page=1&order="}}
@@ -66,6 +68,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							@endif
 							</a>
 						</th>
+
 						<th>
 							<a href="{{ url()->current() 
 								. "?sort=date&page=1&order="}}
@@ -175,21 +178,16 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 								{{ Form::close() }}
 
-								{{ Form::open([
-									'method' => 'PATCH',
-									'style' => 'display: inline-block',
-									'route' => ['deficiency.update', 
-												$deficiency->id]])}}
+								<button class="btn btn-xs btn-info"
+										type="button"
+										data-toggle="modal"
+									  data-target="#edit-deficiency-{{$deficiency->id}}">
+									<span class="glyphicon
+									glyphicon-edit"></span>
+								</button>
 
-								{{ Form::button('<span class="glyphicon 
-												glyphicon-edit"></span>', 
-												array('type' => 'submit', 
-												'class' => 'btn btn-info
-															btn-xs',
-												'data-toggle' => 'tooltip',
-												'title' => 'Edit'
-								)) }}	
-
+							@include('student.deficiencyeditmodal');
+									
 							@enduserInSameDepartment
 							</td>
 						</tr>

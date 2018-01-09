@@ -75,4 +75,19 @@ class Deficiency extends Model
     {
         return $this->student->linkTo() . "/deficiency/" . $this->id;
     }
+
+
+	public function checkDepartmentAndFlashMessage($success_message)
+	{
+		
+        if (!$this->userInSameDepartment()) {
+			$fail_message = 
+				"Sorry. You do not have permission to perform that action.";
+            flash($fail_message)->error()->important();
+
+            return redirect()->back();
+        }
+
+        flash($success_message)->success();
+	}
 }
