@@ -1,7 +1,7 @@
 
 <div class="modal fade" id="edit-deficiency-{{$deficiency->id}}">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content col-sm-10">
 			<div class="modal-header">
 				<h3 class="modal-title">
 					Edit Deficiency Information
@@ -34,15 +34,14 @@
 				<div class="form-group">
 					{{ Form::label('title', 'Title') }}
 					{{ Form::text('title', $deficiency->title,
-						array("class" => "form-control")
+						array("class" => "form-control", "required")
 					) }}
 				</div>
 
 				<div class="form-group">
 					{{ Form::label('completed', 'Completed') }}
-					{{ Form::checkbox('completed', $deficiency->completed,
-						array("class"=> "form-control")
-					) }}
+					{{ Form::checkbox('completed', 'completed', 
+						$deficiency->completed) }}
 				</div>
 				
 				<div class="form-group">
@@ -64,3 +63,4 @@
 		</div>
 	</div>
 </div>
+

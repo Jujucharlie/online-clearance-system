@@ -54,7 +54,7 @@ class DeficiencyController extends Controller
 
 		$validatedRequest = request()->validate([
 			'title' => 'required',
-			'note' => 'required'
+			'note' => 'required',
 		]);
 
 		$def->update($validatedRequest);
