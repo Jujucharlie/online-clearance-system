@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Deficiency extends Model
 {
+	protected $guarded = [];
+
+
     public function student()
     {
         return $this->belongsTo('App\Student');

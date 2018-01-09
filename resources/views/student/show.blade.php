@@ -186,8 +186,8 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 									glyphicon-edit"></span>
 								</button>
 
-							@include('student.deficiencyeditmodal');
-									
+								@include('student.deficiencyeditmodal')
+
 							@enduserInSameDepartment
 							</td>
 						</tr>

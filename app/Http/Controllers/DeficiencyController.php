@@ -52,8 +52,20 @@ class DeficiencyController extends Controller
 
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
-        $def->completed = true;
-        $def->save();
+		$validatedRequest = request()->validate([
+			'title' => 'required',
+			'note' => 'required'
+		]);
+
+		$def->update($validatedRequest);
+
+		activity()
+			->performedOn($def)
+			->causedBy(Auth::user())
+			->withProperties(['title' => $def->title, 'note' => $def->note])
+			->log('Edited deficiency item');
+
+		return redirect()->back();
 	}
 
 

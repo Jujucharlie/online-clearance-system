@@ -18,8 +18,7 @@ Route::resource('staff', 'StaffController');
 
 Route::resource('deficiency', 'DeficiencyController');
 
-Route::patch('deficiency/{deficiency}', 'DeficiencyController@complete')
-	->name('deficiency.complete');
+Route::patch('deficiency/{deficiency}/complete', 'DeficiencyController@complete');
 
 Route::resource('student.deficiency', 'StudentDeficiencyController');
 
