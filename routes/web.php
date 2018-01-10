@@ -22,6 +22,8 @@ Route::patch('deficiency/{deficiency}/complete', 'DeficiencyController@complete'
 
 Route::resource('student.deficiency', 'StudentDeficiencyController');
 
+Route::get('student/{student}/pdf', 'StudentController@pdf');
+
 Auth::routes();
 
 Route::get('/home', function(){

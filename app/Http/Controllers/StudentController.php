@@ -6,6 +6,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class StudentController extends Controller
 {
@@ -91,4 +92,16 @@ class StudentController extends Controller
 		return redirect()->action('StudentController@show', 
 								 ['slug' => $student->slug]);
     }
+
+
+	public function pdf($id)
+	{
+		$student = Student::find($id);
+
+		$pdf = PDF::loadView('student.information', compact('student'));	
+
+		return $pdf->setPaper('a4', 'portrait')->stream('pdf.pdf');
+	}
+	
+
 }

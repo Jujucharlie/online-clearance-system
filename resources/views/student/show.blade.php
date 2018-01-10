@@ -15,9 +15,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 				Deficiencies
 				@if($deficiencies->count() == 0 
 					&& Auth::user()->hasRole('staff'))
-					<button class="btn btn-success">
+					<a href="/student/{{$student->id}}/pdf" class="btn btn-success">
 						<span class="glyphicon glyphicon-print"></span>
-					 Print Clearance</button>
+					 Print Clearance</a>
 				@endif
 			</h4>
 

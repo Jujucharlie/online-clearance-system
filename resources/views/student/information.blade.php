@@ -7,6 +7,8 @@
 		</td>
 	</tr>
 	<tr><th>Student number</th><td>{{$student->student_number()}}</td></tr>
+	
+	<tr><th>Email</th><td>{{$student->email()}}</td></tr>
 	<tr><th>Program</th>
 		<td>
 			<a href="/program/{{$student->program->short_name}}">
