@@ -10,18 +10,20 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 			@include('student.information')
 
+			@include('flash::message')
 			<h4 class="page-header">
 				Deficiencies
-				<button class="btn btn-success">
-					<span class="glyphicon glyphicon-print"></span>
-				 Print Clearance</button>
-
+				@if($deficiencies->count() == 0 
+					&& Auth::user()->hasRole('staff'))
+					<button class="btn btn-success">
+						<span class="glyphicon glyphicon-print"></span>
+					 Print Clearance</button>
+				@endif
 			</h4>
 
 			@include('errors.list')
 
 			<div id="def">
-				@include('flash::message')
 
 				<table class="table table-striped">
 					
@@ -205,7 +207,6 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 					@endforeach
 
 				</table>
-
 
 				<div class="pagination-links pull-right">			
 				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])

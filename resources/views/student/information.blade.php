@@ -1,3 +1,4 @@
+<h4 class="page-header">Basic Information</h4>
 <table class="table table-striped">
 	<tr><th>Name</th>
 		<td><a href="{{$student->linkTo()}}">{{$student->name()}}</a></td>

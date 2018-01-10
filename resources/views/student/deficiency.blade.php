@@ -4,7 +4,7 @@
 <div class="container">
 	@include('student.information')
 
-	<h3 class="page-heading">Deficiency Information</h3>
+	<h4 class="page-heading">Deficiency Information</h4>
 	@include('errors.list')
 
 	@include('flash::message')
@@ -62,41 +62,46 @@
 	</table>
 
 	@userInSameDepartment($deficiency->department)
-		{{ Form::open([
-			'method' => 'PATCH',
-			'action' => ['DeficiencyController@complete', $deficiency->id],
-			'style' => 'display: inline-block'])}}
+	<div class="container">
+		<div class="pull-right">
 
-		@if($deficiency->completed)
+			{{ Form::open([
+				'method' => 'PATCH',
+				'action' => ['DeficiencyController@complete', $deficiency->id],
+				'style' => 'display: inline-block'])}}
+
+			@if($deficiency->completed)
+				{{ Form::button(
+					'<span class="glyphicon glyphicon-remove"></span> Mark as incomplete',
+					array('type' => 'submit',
+						  'class' => 'btn btn-danger',
+					)
+				)}}
+			@else 
+				{{ Form::button(
+					'<span class="glyphicon glyphicon-ok"></span> Mark as completed',
+					array('type' => 'submit',
+						  'class' => 'btn btn-success',
+					)
+				)}}
+			@endif
+
+			{{ Form::close() }}
+
 			{{ Form::button(
-				'<span class="glyphicon glyphicon-remove"></span> Mark as incomplete',
-				array('type' => 'submit',
-					  'class' => 'btn btn-danger',
-				)
-			)}}
-		@else 
-			{{ Form::button(
-				'<span class="glyphicon glyphicon-ok"></span> Mark as completed',
-				array('type' => 'submit',
-					  'class' => 'btn btn-success',
-				)
-			)}}
-		@endif
+				'<span class="glyphicon
+				glyphicon-edit"></span> Edit item',
 
-		{{ Form::close() }}
+				array('class' => 'btn btn-info',
+					'data-toggle' => 'modal',
+					'data-target' =>
+					'#edit-deficiency-'.$deficiency->id)
+			
+			) }}
 
-		{{ Form::button(
-			'<span class="glyphicon
-			glyphicon-edit"></span> Edit item',
-
-			array('class' => 'btn btn-info',
-				'data-toggle' => 'modal',
-				'data-target' =>
-				'#edit-deficiency-'.$deficiency->id)
-		
-		) }}
-
-		@include('student.editmodal')
+			@include('student.editmodal')
+		</div>
+	</div>
 	@enduserInSameDepartment
 </div>
 @endsection

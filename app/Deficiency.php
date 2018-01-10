@@ -91,6 +91,6 @@ class Deficiency extends Model
             return redirect()->back();
         }
 
-        flash($success_message)->success();
+        flash($success_message)->success()->important();
 	}
 }

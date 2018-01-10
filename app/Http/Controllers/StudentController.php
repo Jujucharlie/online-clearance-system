@@ -72,6 +72,11 @@ class StudentController extends Controller
             $sort = $request->input('sort');
             $order = $request->input('order');
 
+			if($deficiencies->count() == 0){
+				$flash_message = "No entries found. Student can proceed to OCS for clearance.";
+				flash($flash_message)->success()->important();
+			}
+
 			return view('student.show',
 						compact(['student', 'deficiencies', 'sort', 'order']));
         }//end if($student)
