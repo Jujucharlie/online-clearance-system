@@ -1,3 +1,4 @@
+{{ var_dump($student) }}
 <h4 class="page-header">Basic Information</h4>
 <table class="table table-striped">
 	<tr><th>Name</th>
