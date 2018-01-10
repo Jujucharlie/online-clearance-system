@@ -22,7 +22,7 @@ class CreateDeficienciesTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
 
-            $table->boolean('completed');
+            $table->boolean('completed')->default(false);
 
             $table->integer('staff_id')->unsigned();
             $table->foreign('staff_id')->references('id')->on('staff');        

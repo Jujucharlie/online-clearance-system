@@ -1,7 +1,7 @@
 
-<div class="modal fade" id="edit-deficiency-{{$deficiency->id}}">
+<div class="modal fade container" id="edit-deficiency-{{$deficiency->id}}">
 	<div class="modal-dialog">
-		<div class="modal-content col-sm-10">
+		<div class="modal-content">
 			<div class="modal-header">
 				<h3 class="modal-title">
 					Edit Deficiency Information
@@ -13,7 +13,9 @@
 								$deficiency->id],
 					'style' => 'display: inline-block'
 							])}}
+
 				{{ Form::token() }}
+
 			<div class="modal-body">
 				<div class="form-group">
 					{{ Form::label('department_id', 'Department') }}
@@ -34,18 +36,14 @@
 				<div class="form-group">
 					{{ Form::label('title', 'Title') }}
 					{{ Form::text('title', $deficiency->title,
-						array("class" => "form-control", "required")
+						array("class" => "form-control", 
+							"autocomplete" => "off",
+							"required", "autofocus")
 					) }}
-				</div>
-
-				<div class="form-group">
-					{{ Form::label('completed', 'Completed') }}
-					{{ Form::checkbox('completed', 'completed', 
-						$deficiency->completed) }}
 				</div>
 				
 				<div class="form-group">
-					{{ Form::label('title', 'Note') }}
+					{{ Form::label('note', 'Note') }}
 					{{ Form::textarea('note', $deficiency->note,
 						array("class" => "form-control")
 					) }}
@@ -53,10 +51,14 @@
 			</div>
 			<div class="modal-footer">
 				{{Form::button("Reset",
-					array("type" => 'reset', 'class' => 'btn')
+					array("type" => "reset", "class" => "btn")
 				)}}
 				{{Form::button("Submit",
-					array("type" => 'submit','class' => 'btn btn-success')
+					array("type" => "submit",
+						"class" => "btn btn-success",
+						"title" => "Submitting notifies the student via email",
+						"data-toggle" => "tooltip"
+					)
 				)}}
 				{{Form::close()}}
 			</div>

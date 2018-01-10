@@ -12,7 +12,13 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 			<h4 class="page-header">
 				Deficiencies
+				<button class="btn btn-success">
+					<span class="glyphicon glyphicon-print"></span>
+				 Print Clearance</button>
+
 			</h4>
+
+			@include('errors.list')
 
 			<div id="def">
 				@include('flash::message')
@@ -186,8 +192,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 									glyphicon-edit"></span>
 								</button>
 
-								@include('student.deficiencyeditmodal')
-
+								@include('student.editmodal')
 							@enduserInSameDepartment
 							</td>
 						</tr>
@@ -196,12 +201,25 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 				</table>
 
+
 				<div class="pagination-links pull-right">			
 				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])
 								->fragment('def')->links() }}
-				</div>		
-			</div>
 
+					<div class="container-fluid">
+						<button class="btn btn-danger pull-right"
+								data-toggle="modal"
+								data-target="#add-deficiency-modal"
+							>
+							<span class="glyphicon glyphicon-plus"></span>
+							Add item
+						</button>
+					</div>
+				</div>		
+
+				@include('student.addmodal')
+				
+			</div>
 
 	@endif
 	</div>

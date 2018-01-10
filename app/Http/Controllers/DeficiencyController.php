@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Deficiency;
+use App\Staff;
+use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
@@ -54,8 +56,9 @@ class DeficiencyController extends Controller
 
 		$validatedRequest = request()->validate([
 			'title' => 'required',
-			'note' => 'required',
+			'note' => 'nullable',
 		]);
+
 
 		$def->update($validatedRequest);
 
@@ -71,24 +74,32 @@ class DeficiencyController extends Controller
 
     public function store()
     {
-        $staff = Staff::where('user_id', '=', Auth::user()->id)->firstOrFail();
+		$staff = Staff::whereUserId(Auth::user()->id)->firstOrFail();
 
-        $validated_request = request()->validate([
-            'title' => 'required',
-            'note' => 'required',
-            'student_id' => 'required|digits:9'
-        ]);
-        $validated_request['staff_id'] = $staff->id;
-        $validated_request['department_id'] = $department_id;
-        $def = Deficiency::create($validated_request);
+		$validatedRequest = request()->validate([
+			'title' => 'required',
+			'note' => 'nullable',
+			'student_id' => 'digits:9',
+		]);
 
-        activity()
-            ->performedOn($def)
-            ->causedBy(Auth::user())
-            ->withProperties(['title' => $def->title])
-            ->log('Filed deficiency');
+		$student = Student::whereStudentNumber($validatedRequest['student_id'])
+			->firstOrFail();
+		$validatedRequest['student_id'] = $student->id;
+		$validatedRequest['staff_id'] = $staff->id;
+		$validatedRequest['department_id'] = $staff->department_id;
 
-        return redirect('some.path');
+		$def = Deficiency::create($validatedRequest);
+
+		$flash_message = "Item successfully added";
+		$def->checkDepartmentAndFlashMessage($flash_message);
+
+		activity()
+			->performedOn($def)
+			->causedBy(Auth::user())
+			->withProperties(['title' => $def->title, 'note' => $def->note])
+			->log('Filed deficiency item');
+
+		return redirect()->back();
 	}
 
 	
