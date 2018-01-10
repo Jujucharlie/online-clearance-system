@@ -61,27 +61,42 @@
 
 	</table>
 
-	{{ Form::open([
-		'method' => 'PATCH',
-		'action' => ['DeficiencyController@complete', $deficiency->id],
-		'style' => 'display: inline-block'])}}
+	@userInSameDepartment($deficiency->department)
+		{{ Form::open([
+			'method' => 'PATCH',
+			'action' => ['DeficiencyController@complete', $deficiency->id],
+			'style' => 'display: inline-block'])}}
 
-	@if($deficiency->completed)
-		{{ Form::button(
-			'<span class="glyphicon glyphicon-remove"></span> Mark as incomplete',
-			array('type' => 'submit',
-				  'class' => 'btn btn-danger',
-			)
-		)}}
-	@else 
-		{{ Form::button(
-			'<span class="glyphicon glyphicon-ok"></span> Mark as completed',
-			array('type' => 'submit',
-				  'class' => 'btn btn-success',
-			)
-		)}}
-	@endif
+		@if($deficiency->completed)
+			{{ Form::button(
+				'<span class="glyphicon glyphicon-remove"></span> Mark as incomplete',
+				array('type' => 'submit',
+					  'class' => 'btn btn-danger',
+				)
+			)}}
+		@else 
+			{{ Form::button(
+				'<span class="glyphicon glyphicon-ok"></span> Mark as completed',
+				array('type' => 'submit',
+					  'class' => 'btn btn-success',
+				)
+			)}}
+		@endif
 
-	{{ Form::close() }}
+		{{ Form::close() }}
+
+		{{ Form::button(
+			'<span class="glyphicon
+			glyphicon-edit"></span> Edit item',
+
+			array('class' => 'btn btn-info',
+				'data-toggle' => 'modal',
+				'data-target' =>
+				'#edit-deficiency-'.$deficiency->id)
+		
+		) }}
+
+		@include('student.editmodal')
+	@enduserInSameDepartment
 </div>
 @endsection

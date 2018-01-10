@@ -25,19 +25,24 @@ class DeficiencyController extends Controller
         //Flash notification confirming user's action
 		$flash_message = 
 			"Deficiency <strong>" 
-			. $def->title . "</strong> marked as completed.";
+			. $def->title . "</strong> updated.";
 
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
         $def->completed = !$def->completed;
         $def->save();
 
+		if($def->completed)
+			$log_message = "Marked deficiency as completed.";
+		else
+			$log_message = "Marked deficiency as incomplete.";
+
         //Log action
         activity()
             ->performedOn($def)
             ->causedBy(Auth::user())
             ->withProperties(['completed' => $def->completed])
-            ->log('Marked deficiency as compelted.');
+			->log($log_message);
 
         //Redirect
         $previous = URL::previous() . "#def";

@@ -185,13 +185,16 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 								{{ Form::close() }}
 
-								<button class="btn btn-xs btn-info"
-										type="button"
-										data-toggle="modal"
-										data-target="#edit-deficiency-{{$deficiency->id}}">
-									<span class="glyphicon
-									glyphicon-edit"></span>
-								</button>
+								{{ Form::button(
+									'<span class="glyphicon
+									glyphicon-edit"></span>',
+
+									array('class' => 'btn btn-xs btn-info',
+										'data-toggle' => 'modal',
+										'data-target' =>
+										'#edit-deficiency-'.$deficiency->id)
+								
+								) }}
 
 								@include('student.editmodal')
 
