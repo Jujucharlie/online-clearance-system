@@ -28,6 +28,12 @@ class Department extends Model
         return $this->hasMany('App\Staff');
     }
 
+	public function linkTo()
+	{
+		return 	"/department/" . $this->short_name;
+	}
+	
+
     
 
     /**

@@ -1,3 +1,14 @@
+
+@hasRole("staff")
+	<div class="container-fluid">
+		<button class="btn btn-danger pull-right"
+				data-toggle="modal"
+				data-target="#add-deficiency-modal"
+			>
+			<span class="glyphicon glyphicon-plus"></span>
+			Add item
+		</button>
+	</div>
 @php
 	$staff = Staff::whereUserId(Auth::user()->id)->firstOrFail();
 	$department = $staff->department;
@@ -77,3 +88,4 @@
 	</div>
 </div>
 
+@endhasRole	

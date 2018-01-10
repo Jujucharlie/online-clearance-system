@@ -1,6 +1,6 @@
 <table class="table table-striped">
 	<tr><th>Name</th>
-		<td>{{$student->name()}}</td>
+		<td><a href="{{$student->linkTo()}}">{{$student->name()}}</a></td>
 		<td rowspan="5">
 			<img src="{{$student->picture()}}" style="max-height: 180px; border: 2px solid #021a40;">
 		</td>

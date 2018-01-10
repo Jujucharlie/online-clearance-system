@@ -29,7 +29,7 @@ class DeficiencyController extends Controller
 
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
-        $def->completed = true;
+        $def->completed = !$def->completed;
         $def->save();
 
         //Log action
@@ -96,7 +96,8 @@ class DeficiencyController extends Controller
 		activity()
 			->performedOn($def)
 			->causedBy(Auth::user())
-			->withProperties(['title' => $def->title, 'note' => $def->note])
+			->withProperties(['title' => $def->title, 'note' => $def->note,
+			'student' => $student->name()])
 			->log('Filed deficiency item');
 
 		return redirect()->back();

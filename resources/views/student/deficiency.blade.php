@@ -5,7 +5,9 @@
 	@include('student.information')
 
 	<h3 class="page-heading">Deficiency Information</h3>
+	@include('errors.list')
 
+	@include('flash::message')
 	<table class="table table-striped">
 		@if($deficiency)
 		<tr>
@@ -20,7 +22,11 @@
 
 		<tr>
 			<th>Department</th>
-			<td>{{$deficiency->department->name}}</td>
+			<td>
+				<a href="{{$deficiency->department->linkTo()}}">
+					{{$deficiency->department->name}}
+				</a>
+			</td>
 		</tr>
 
 		<tr>
@@ -54,5 +60,28 @@
 		@endif
 
 	</table>
+
+	{{ Form::open([
+		'method' => 'PATCH',
+		'action' => ['DeficiencyController@complete', $deficiency->id],
+		'style' => 'display: inline-block'])}}
+
+	@if($deficiency->completed)
+		{{ Form::button(
+			'<span class="glyphicon glyphicon-remove"></span> Mark as incomplete',
+			array('type' => 'submit',
+				  'class' => 'btn btn-danger',
+			)
+		)}}
+	@else 
+		{{ Form::button(
+			'<span class="glyphicon glyphicon-ok"></span> Mark as completed',
+			array('type' => 'submit',
+				  'class' => 'btn btn-success',
+			)
+		)}}
+	@endif
+
+	{{ Form::close() }}
 </div>
 @endsection

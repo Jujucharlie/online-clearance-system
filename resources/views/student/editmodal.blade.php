@@ -14,8 +14,6 @@
 					'style' => 'display: inline-block'
 							])}}
 
-				{{ Form::token() }}
-
 			<div class="modal-body">
 				<div class="form-group">
 					{{ Form::label('department_id', 'Department') }}

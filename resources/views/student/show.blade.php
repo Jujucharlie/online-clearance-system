@@ -166,6 +166,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							<td>
 								@userInSameDepartment(Department::find($deficiency
 																->department_id))
+
 								{{ Form::open([
 									'method' => 'PATCH',
 									'action' => ['DeficiencyController@complete', 
@@ -187,13 +188,14 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 								<button class="btn btn-xs btn-info"
 										type="button"
 										data-toggle="modal"
-									  data-target="#edit-deficiency-{{$deficiency->id}}">
+										data-target="#edit-deficiency-{{$deficiency->id}}">
 									<span class="glyphicon
 									glyphicon-edit"></span>
 								</button>
 
 								@include('student.editmodal')
-							@enduserInSameDepartment
+
+								@enduserInSameDepartment
 							</td>
 						</tr>
 
@@ -205,20 +207,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 				<div class="pagination-links pull-right">			
 				{{ $deficiencies->appends(['sort' => $sort, 'order' => $order])
 								->fragment('def')->links() }}
-
-					<div class="container-fluid">
-						<button class="btn btn-danger pull-right"
-								data-toggle="modal"
-								data-target="#add-deficiency-modal"
-							>
-							<span class="glyphicon glyphicon-plus"></span>
-							Add item
-						</button>
-					</div>
+						@include('student.addmodal')
 				</div>		
 
-				@include('student.addmodal')
-				
 			</div>
 
 	@endif
