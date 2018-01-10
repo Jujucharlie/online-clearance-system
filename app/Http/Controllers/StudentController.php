@@ -6,8 +6,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade as PDF;
-
+use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 class StudentController extends Controller
 {
     public function __construct()
@@ -96,11 +95,15 @@ class StudentController extends Controller
 
 	public function pdf($id)
 	{
+		$paperSize = 'a4';
+		$orientation = 'portrait';
+
 		$student = Student::find($id);
 
-		$pdf = PDF::loadView('student.pdf', compact('student'));	
+		$pdf = PDF::loadView('student.information', compact('student'));
 
-		return $pdf->setPaper('a4', 'portrait')->stream('pdf.pdf');
+		return $pdf->stream('file.pdf');
+
 	}
 	
 

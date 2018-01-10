@@ -180,7 +180,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
 
-		Barryvdh\DomPDF\ServiceProvider::class,
+		niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+
+
     ],
 
     /*
@@ -229,9 +231,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-		'PDF' => Barryvdh\DomPDF\Facade::class,
+		'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+
         'Staff' => App\Staff::class,
         'Deficiency' => App\Deficiency::class,
         'Department' => App\Department::class,
