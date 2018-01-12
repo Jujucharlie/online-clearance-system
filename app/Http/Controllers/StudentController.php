@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
+
 class StudentController extends Controller
 {
     public function __construct()
@@ -59,12 +60,12 @@ class StudentController extends Controller
             $deficiencies = DB::table('deficiencies')
                 ->where('student_id', '=', $student->id)
                 ->where('completed', '=', false)
-				->join('departments',
-						'departments.id', '=', 'deficiencies.department_id')
+                ->join('departments',
+                        'departments.id', '=', 'deficiencies.department_id')
                 ->join('staff', 'staff.id', '=', 'deficiencies.staff_id')
-				->select('slug as staff_slug', 
-						'name as dept_name', 
-						'short_name as dept_short_name', 'deficiencies.*')
+                ->select('slug as staff_slug',
+                        'name as dept_name',
+                        'short_name as dept_short_name', 'deficiencies.*')
                 ->orderBy($sort, $order)
                 ->orderBy('title', $order)
                 ->simplePaginate($items_per_page);
@@ -72,13 +73,13 @@ class StudentController extends Controller
             $sort = $request->input('sort');
             $order = $request->input('order');
 
-			if($deficiencies->count() == 0){
-				$flash_message = "No entries found. Student can proceed to OCS for clearance.";
-				flash($flash_message)->success()->important();
-			}
+            if ($deficiencies->count() == 0) {
+                $flash_message = "No entries found. Student can proceed to OCS for clearance.";
+                flash($flash_message)->success()->important();
+            }
 
-			return view('student.show',
-						compact(['student', 'deficiencies', 'sort', 'order']));
+            return view('student.show',
+                        compact(['student', 'deficiencies', 'sort', 'order']));
         }//end if($student)
 
         // Only evaluates the first numeric part (student number)
@@ -88,23 +89,20 @@ class StudentController extends Controller
         // HTTP 404 error if no student is found
         $student_number = intval($slug);
         $student = Student::whereStudentNumber($student_number)->firstOrFail();
-		return redirect()->action('StudentController@show', 
-								 ['slug' => $student->slug]);
+        return redirect()->action('StudentController@show',
+                                 ['slug' => $student->slug]);
     }
 
 
-	public function pdf($id)
-	{
-		$paperSize = 'a4';
-		$orientation = 'portrait';
+    public function pdf($slug)
+    {
+        $paperSize = 'a4';
+        $orientation = 'portrait';
 
-		$student = Student::find($id);
+        $student = Student::whereSlug($slug)->first();
 
-		$pdf = PDF::loadView('student.information', compact('student'));
+        $pdf = PDF::loadView('student.pdf', compact('student'));
 
-		return $pdf->stream('file.pdf');
-
-	}
-	
-
+        return $pdf->stream('file.pdf');
+    }
 }

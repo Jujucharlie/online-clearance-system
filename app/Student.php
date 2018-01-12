@@ -38,6 +38,25 @@ class Student extends AbstractUser
         return $this->hasMany('App\Deficiency');
     }
 
+	public function completedDeficiencies()
+	{
+		return $this->deficiencies->where('completed', true);
+	}
+
+	/* Aliasing the method above */		
+	public function completeDeficiencies()
+	{
+		return $this->deficiencies->where('completed', true);
+	}
+
+	public function incompleteDeficiencies()
+	{
+		
+		return $this->deficiencies->where('completed', false);
+	}
+	
+	
+
     /**
      * URL to studet's ID photo
      */

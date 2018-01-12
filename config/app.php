@@ -240,6 +240,8 @@ return [
         'Deficiency' => App\Deficiency::class,
         'Department' => App\Department::class,
         'Student' => App\Student::class,
+        'College' => App\College::class,
+
 
     ],
 
