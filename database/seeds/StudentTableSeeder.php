@@ -34,7 +34,7 @@ class StudentTableSeeder extends Seeder
 
         $faker = Faker::create('App\Student');
 
-        makeStudent('Melvin San Jose', 'melbs@gmail.com', 200824143, 1);
+        makeStudent('Melvin San Jose', 'mcsanjose@up.edu.ph', 200824143, 1);
 
         for($i=0;$i<100;$i++)
             makeStudent($faker->name(), $faker->email(), rand(200000000,201800000), rand(1,11));

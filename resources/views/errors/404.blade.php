@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container alert alert-danger">
-		Page unavailable.
+	<div class="container">
+		ERROR 404
     </div>
 @endsection

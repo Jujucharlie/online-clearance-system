@@ -59,6 +59,7 @@
 						array("class" => "form-control", 
 							"autocomplete" => "off",
 							"placeholder" => "Title",
+							"maxlength" => "140",
 							"required", "autofocus")
 					) }}
 				</div>
@@ -67,7 +68,8 @@
 					{{ Form::label('title', 'Note') }}
 					{{ Form::textarea('note', null,
 						array("class" => "form-control",
-							  "placeholder" => "Additional information"
+							  "placeholder" => "Additional information",
+							"maxlength" => "255",
 						)
 					) }}
 				</div>

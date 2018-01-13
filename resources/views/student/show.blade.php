@@ -104,8 +104,6 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 									href="/department/{{$deficiency
 															->dept_short_name}}">
 							@endhasRole
-
-							<span class="d-inline-block text-truncate">
 								{{ $deficiency->dept_name }}
 
 							@hasRole('staff')
