@@ -1,8 +1,12 @@
 
-<div class="modal fade container" id="edit-deficiency-{{$deficiency->id}}">
+<div class="modal fade row" id="edit-deficiency-{{$deficiency->id}}">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content col-xs-10">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					 aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+				</button>
 				<h3 class="modal-title">
 					Edit Deficiency Information
 				</h3>
@@ -11,7 +15,6 @@
 					'method' => 'PATCH',
 					'action' => ['DeficiencyController@update', 
 								$deficiency->id],
-					'style' => 'display: inline-block'
 							])}}
 
 			<div class="modal-body">
@@ -36,6 +39,7 @@
 					{{ Form::text('title', $deficiency->title,
 						array("class" => "form-control", 
 							"autocomplete" => "off",
+							"placeholder" => "Title",
 							"required", "autofocus")
 					) }}
 				</div>
@@ -43,7 +47,9 @@
 				<div class="form-group">
 					{{ Form::label('note', 'Note') }}
 					{{ Form::textarea('note', $deficiency->note,
-						array("class" => "form-control")
+						array("class" => "form-control",
+							  "placeholder" => "Additional information"
+						)
 					) }}
 				</div>
 			</div>
@@ -51,7 +57,7 @@
 				{{Form::button("Reset",
 					array("type" => "reset", "class" => "btn")
 				)}}
-				{{Form::button("Submit",
+				{{Form::button("Save Changes",
 					array("type" => "submit",
 						"class" => "btn btn-success",
 						"title" => "Submitting notifies the student via email",

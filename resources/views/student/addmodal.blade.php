@@ -13,16 +13,20 @@
 	$staff = Staff::whereUserId(Auth::user()->id)->firstOrFail();
 	$department = $staff->department;
 @endphp
-<div class="modal fade container" id="add-deficiency-modal">
+<div class="modal fade row" id="add-deficiency-modal">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content col-xs-10">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					 aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+				</button>
 				<h3 class="modal-title">Add Item</h3>
 			</div>
 				{{ Form::open([
 					'method' => 'POST',
 					'action' => ['DeficiencyController@store'],
-					'style' => 'display: inline-block'])}}
+				])}}
 
 				{{ Form::token() }}
 
@@ -72,7 +76,7 @@
 				{{Form::button("Reset",
 					array("type" => "reset", "class" => "btn")
 				)}}
-				{{Form::button("Submit",
+				{{Form::button("Add Item",
 					array("type" => "submit",
 						"class" => "btn btn-success",
 						"title" => "Submitting notifies the student via email",

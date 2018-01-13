@@ -35,3 +35,7 @@ Route::get('/logs', 'PagesController@logs');
 Route::get('/log', function(){
 	return redirect('/logs');
 });
+
+Route::get('/google', function(){
+	return view('pages.google');
+});
