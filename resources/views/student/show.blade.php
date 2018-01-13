@@ -25,10 +25,10 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 			@include('errors.list')
 
 			<div id="def">
-				<table class="table table-striped">
+				<table class="table table-striped def-table">
 					<tr>
 
-						<th>
+						<th class="trunc dept-header">
 							<a href="{{ url()->current() 
 								. "?sort=department&page=1&order="}}
 							@if($sort=="department" && $order=="asc")
@@ -43,7 +43,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							</a>
 						</th>
 
-						<th>
+						<th class="trunc title-header">
 							<a href="{{ url()->current()
 								. "?sort=title&page=1&order="}}
 							@if($sort=="title" && $order=="asc")
@@ -58,10 +58,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							</a>
 						</th>
 
-						<th class="visible-md visible-lg 
-							visible-xl hidden-sm hidden-xs">
-							Note</th>
-						<th>
+						<th class="staff-header trunc">
 							<a href="{{ url()->current() 
 								. "?sort=staff&page=1&order="}}
 							@if($sort=="staff" && $order=="asc")
@@ -76,7 +73,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							</a>
 						</th>
 
-						<th>
+						<th class="date-header trunc">
 							<a href="{{ url()->current() 
 								. "?sort=date&page=1&order="}}
 							@if($sort=="date" && $order=="asc")
@@ -92,63 +89,38 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							</a>
 						</th>
 						@hasRole('staff')	
-						<th>Actions</th>
-					@endhasRole
+						<th class="hidden-xs action-header trunc">Actions</th>
+						@endhasRole
 					</tr>
 
 					@foreach($deficiencies as $deficiency)
 
 						<tr>
-							<td title="{{$deficiency->dept_name}}" 
+							<td title="{{$deficiency->dept_name}}"
+								class="trunc"
 								data-toggle="tooltip">
 							@hasRole('staff')
 								<a 
 									href="/department/{{$deficiency
 															->dept_short_name}}">
 							@endhasRole
-							<span class="visible-sm visible-xs" >
-								{{strtoupper($deficiency->dept_short_name)}}
-							</span>
-							<span class="hidden-sm hidden-xs visible-md">
-								{{str_limit($deficiency->dept_name, 20)}}
-							</span>
-							<span class="hidden-md visible-lg hidden-xl">
-								{{str_limit($deficiency->dept_name, 35)}}
-							</span>
+
+							<span class="d-inline-block text-truncate">
+								{{ $deficiency->dept_name }}
 
 							@hasRole('staff')
 								</a>
 							@endhasRole
 							</td>
-							<td data-toggle="tooltip" 
+							<td data-toggle="tooltip" class="trunc"
 								title="{{$deficiency->title}}">
 								<a href="{{Deficiency::find($deficiency->id)
 															->linkTo()}}">						
-									<span class="hidden-lg">
-										{{str_limit($deficiency->title, 25)}}	
-									</span>
-
-									<span class="visible-lg">
-										{{str_limit($deficiency->title, 35)}}
-									</span>
+														{{$deficiency->title}}
 								</a>					
 							</td>
 
-							<td class="visible-md visible-lg 
-									visible-xl hidden-sm hidden-xs"
-								data-toggle="tooltip"
-								title="{{$deficiency->note}}">
-
-								<span class="hidden-lg">
-									{{ str_limit($deficiency->note, 20) }}
-								</span>		
-
-								<span class="visible-lg">
-									{{ str_limit($deficiency->note, 30) }}
-								</span>
-							</td>	
-
-							<td>
+							<td class="trunc">
 								<a href="{{Staff::find($deficiency->staff_id)
 												->linkTo()}}">
 								{{str_limit(Staff::find($deficiency->staff_id)
@@ -158,16 +130,15 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 							<td title="{{ Deficiency::find($deficiency->id)
 													->postDateTime() }}" 
-								data-toggle="tooltip">
+								data-toggle="tooltip" class="trunc">
 								{{ Deficiency::find($deficiency->id)
 								->postDate() }}
 
 							</td>
 
-							<td>
 								@userInSameDepartment(Department::find($deficiency
 																->department_id))
-
+							<td class="hidden-xs trunc">
 								{{ Form::open([
 									'method' => 'PATCH',
 									'action' => ['DeficiencyController@complete', 

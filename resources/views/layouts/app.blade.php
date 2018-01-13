@@ -12,6 +12,33 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<style>
+		.trunc{
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.def-table{
+			table-layout: fixed;
+		}
+
+		.dept-header{
+			width: 30%;
+		}
+
+		.title-header{
+			width: 30%;
+		}
+	
+		.staff-header, .date-header{
+			width: 15%;
+		}
+
+		.action-header{
+			width: 10%;
+		}
+	</style>
 </head>
 <body>
     <div id="app">
