@@ -98,13 +98,6 @@ class DeficiencyController extends Controller
 		$flash_message = "Item successfully added";
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
-		activity()
-			->performedOn($def)
-			->causedBy(Auth::user())
-			->withProperties(['title' => $def->title, 'note' => $def->note,
-			'student' => $student->name()])
-			->log('Filed deficiency item');
-
 		return redirect()->back();
 	}
 

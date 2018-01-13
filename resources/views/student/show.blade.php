@@ -13,8 +13,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 			@include('flash::message')
 			<h4 class="page-header">
 				Deficiencies
-				@if($deficiencies->count() == 0 
-					&& Auth::user()->hasRole('staff'))
+				@if(Auth::user()->hasRole('staff'))
 					<a target="_blank" 
 						href="{{$student->linkTo()}}/pdf" 
 						class="btn btn-success">
@@ -26,9 +25,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 			@include('errors.list')
 
 			<div id="def">
-
 				<table class="table table-striped">
-					
 					<tr>
 
 						<th>
@@ -104,7 +101,7 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 						<tr>
 							<td title="{{$deficiency->dept_name}}" 
 								data-toggle="tooltip">
-								@hasRole('staff')
+							@hasRole('staff')
 								<a 
 									href="/department/{{$deficiency
 															->dept_short_name}}">
@@ -162,9 +159,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 							<td title="{{ Deficiency::find($deficiency->id)
 													->postDateTime() }}" 
 								data-toggle="tooltip">
-								<span>{{ Deficiency::find($deficiency->id)
-													->postDate() }}
-								</span>
+								{{ Deficiency::find($deficiency->id)
+								->postDate() }}
+
 							</td>
 
 							<td>
@@ -215,11 +212,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 								->fragment('def')->links() }}
 						@include('student.addmodal')
 				</div>		
-
 			</div>
 
 	@endif
 	</div>
-
 
 @endsection

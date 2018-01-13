@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
+use Illuminate\Support\Carbon;
 
 class StudentController extends Controller
 {
@@ -57,6 +58,8 @@ class StudentController extends Controller
                 $order = "desc";
             }
 
+			$deficiencies = $student
+					->deficienciesForShow($sort, $order, $items_per_page);
             $deficiencies = DB::table('deficiencies')
                 ->where('student_id', '=', $student->id)
                 ->where('completed', '=', false)
@@ -101,8 +104,18 @@ class StudentController extends Controller
 
         $student = Student::whereSlug($slug)->first();
 
-        $pdf = PDF::loadView('student.pdf', compact('student'));
+		/* When saved, the PDF file generated will have a name with the format */
+		/* 2010-john-doe-01012085945.pdf */
+		$format = "mdyhis";
+		$file_name = $student->slug . "-".
+					Carbon::now()->format($format) . ".pdf";
 
-        return $pdf->stream('file.pdf');
+        $pdf = PDF::loadView('student.pdf', compact('student', 'file_name'));
+		activity()
+			->performedOn($student)
+			->causedBy(Auth::user())
+			->log('Generated clearance PDF');
+
+        return $pdf->stream($file_name);
     }
 }

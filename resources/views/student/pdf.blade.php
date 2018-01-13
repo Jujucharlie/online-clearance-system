@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>{{$student->name()}}</title>
+		<title>{{$file_name}}</title>
 	</head>
 
 	<style>
@@ -33,8 +33,22 @@
 		}
 
 		.date{
+			font-size: 8px;
 			font-style: italic;
-			font-size: 8pt;
+		}
+
+		.def-table-header td{
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+		.def-table-info td{
+			font-weight: normal;
+			padding-top: 20px;
+		}
+
+		.def-count{
+			text-align: center;
 		}
 	</style>
 
@@ -66,26 +80,30 @@
 				</tr>
 			</table>
 
-
 			<table>
+				<tr class="def-table-header">
+					<th>Department</th>
+					<th>Deficiencies</th>
+				</tr>
 				@foreach(College::whereShortName('cas')->first()
 					->departments->sortBy('short_name') as $department)
-						<tr>
+						<tr class="def-table-info">
 							<td>{{$department->name}}</td>
-							<td>
+							<td class="def-count">
 								{{$student->incompleteDeficiencies()
 								->where('department_id', $department->id)
 								->count()}}
-								deficiencies</td>
+							</td>
 						</tr>
 				@endforeach
 			</table>
 		</div>
 
 		<div class="footer">
-			<div class="date">{{\Illuminate\Support\Carbon::now()->format('l  F
+			<div class="date">
+				{{-- Monday, January 10, 2020 9:23 AM --}}
+				Generated on {{\Illuminate\Support\Carbon::now()->format('l, F
 			j, Y h:i A')}}</div>
-			NOT VALID UNLESS SIGNED BY THE COLLEGE SECRETARY.
 		</div>
 	</body>
 </html>
