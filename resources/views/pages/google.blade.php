@@ -2,7 +2,10 @@
 
 @section('content')
 	<div class="container">
-		<button class="btn btn-xl btn-primary"><span class="glyphicon
-		glyphicon-log-in"></span>&nbsp;&nbsp;Google</button>
+		<a class="btn btn-lg btn-success" href="{{ route('glogin') }}">
+			<span class="glyphicon glyphicon-log-in"></span>
+			&nbsp;&nbsp;Google</a>
+
+		API KEY: {{ config('services.oauth_api_key') }}
 	</div>
 @endsection

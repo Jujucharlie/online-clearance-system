@@ -26,16 +26,14 @@ Route::get('student/{student}/pdf', 'StudentController@pdf');
 
 Auth::routes();
 
-Route::get('/home', function(){
+Route::get('home', function(){
 	return redirect('/profile');
 })->name('home');
 
-Route::get('/logs', 'PagesController@logs');
+Route::get('logs', 'PagesController@logs');
 
-Route::get('/log', function(){
-	return redirect('/logs');
-});
+Route::get('log', 'PagesController@log');
 
-Route::get('/google', function(){
-	return view('pages.google');
-});
+Route::get('google', 'PagesController@google');
+
+Route::get('glogin', 'PagesController@googleLogin')->name('glogin');
