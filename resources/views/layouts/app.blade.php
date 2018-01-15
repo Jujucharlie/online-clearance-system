@@ -13,6 +13,38 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<style>
+		/* Sticky footer styles
+		-------------------------------------------------- */
+		html {
+		  position: relative;
+		  min-height: 100%;
+		}
+
+		body {
+		  /* Margin bottom by footer height */
+		  margin-bottom: 60px;
+		}
+
+		.footer {
+		  position: absolute;
+		  bottom: 0;
+		  width: 100%;
+		  /* Set the fixed height of the footer here */
+		  height: 60px;
+		  line-height: 60px; /* Vertically center the text there */
+		  background-color: gray;
+		}
+
+		.footer .container{
+			font-size: 8pt;
+			color: white;
+		}
+
+		.avatar{
+			width: 40px;
+			border-radius: 50%;
+		}
+
 		.trunc{
 			white-space: nowrap;
 			overflow: hidden;
@@ -73,8 +105,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+									
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+
+									<img class="avatar" 
+										 src="{{ Auth::user()->avatar }}" />
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -102,6 +138,7 @@
 
     </div>
 
+	@include('layouts.footer')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script>

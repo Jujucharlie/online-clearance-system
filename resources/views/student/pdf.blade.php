@@ -103,7 +103,7 @@
 			<div class="date">
 				{{-- Monday, January 10, 2020 9:23 AM --}}
 				Generated on {{\Illuminate\Support\Carbon::now()->format('l, F
-			j, Y h:i A')}}</div>
+				j, Y h:i A')}} by {{ Auth::user()->name }}</div>
 		</div>
 	</body>
 </html>

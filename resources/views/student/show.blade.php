@@ -13,13 +13,15 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 			@include('flash::message')
 			<h4 class="page-header">
 				Deficiencies
-				@if(Auth::user()->hasRole('staff'))
-					<a target="_blank" 
-						href="{{$student->linkTo()}}/pdf" 
-						class="btn btn-success">
-						<span class="glyphicon glyphicon-print"></span>
-					 Print Clearance</a>
-				@endif
+
+			@hasRole('staff')
+				<a target="_blank" 
+					href="{{$student->linkTo()}}/pdf" 
+					class="btn btn-success">
+					<span class="glyphicon glyphicon-print"></span>
+				 Print Clearance</a>
+			@endhasRole
+
 			</h4>
 
 			@include('errors.list')

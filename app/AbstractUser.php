@@ -39,6 +39,12 @@ abstract class AbstractUser extends Model
         return $this->user->roles;
     }
 
+	public function avatar()
+	{
+		return $this->user->avatar;
+	}
+	
+
     abstract public function department();
     abstract public function college();
     abstract public function getSlugSourceAttribute();

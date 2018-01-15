@@ -32,9 +32,12 @@
 					</a>
 				</td>
 
-				<td><a href="{{$log->subject->student->linkTo()}}">
-						{{$log->subject->student->name()}}
-					</a>
+				<td>
+					@if(isset($log->subject->student))
+						<a href="{{$log->subject->student->linkTo()}}">
+							{{$log->subject->student->name()}}
+						</a>
+					@endif
 				</td>
 				<td>{{$log->created_at->toDayDateTimeString()}}</td>
 			</tr>

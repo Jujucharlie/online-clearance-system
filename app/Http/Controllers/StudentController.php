@@ -99,10 +99,11 @@ class StudentController extends Controller
 					Carbon::now()->format($format) . ".pdf";
 
         $pdf = PDF::loadView('student.pdf', compact('student', 'file_name'));
+
 		activity()
 			->performedOn($student)
 			->causedBy(Auth::user())
-			->log('Generated clearance PDF');
+			->log('Generated clearance PDF for student ' . $student->name());
 
         return $pdf->stream($file_name);
     }

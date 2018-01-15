@@ -117,9 +117,11 @@ class PagesController extends Controller
 
 			if($user = User::where('email', $guser['email'])->first()){
 				Auth::login($user);
+				$user->avatar = $guser['picture'];
+				$user->save();
 				return redirect()->action('PagesController@profile');
 			}else{
-				dd('something something');
+	
 			}
 
 			return redirect()->action('PagesController@google');
