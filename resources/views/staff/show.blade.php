@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+	@if(isset($staff))
+		{{$staff->name()}}
+	@endif
+@endsection
+
 @section('content')
 	<div class="container">
-		<script type="text/javascript">
-			document.title = '{{$staff->name()}}' + ' - ' + document.title;
-		</script>
 		
 		@if(isset($staff))
 			<table class="table table-striped table-responsive">

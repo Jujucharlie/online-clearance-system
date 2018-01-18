@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+	@if(isset($student))
+		{{$student->name()}}
+	@endif
+@endsection
+
 @section('content')
 	<div class="container">
-		<script type="text/javascript">
-document.title = '{{$student->name()}}' + ' - ' + document.title;
-		</script>
 
 		@if(isset($student))
 
@@ -136,9 +139,9 @@ document.title = '{{$student->name()}}' + ' - ' + document.title;
 
 							</td>
 
+							<td class="hidden-xs trunc">
 								@userInSameDepartment(Department::find($deficiency
 																->department_id))
-							<td class="hidden-xs trunc">
 								{{ Form::open([
 									'method' => 'PATCH',
 									'action' => ['DeficiencyController@complete', 

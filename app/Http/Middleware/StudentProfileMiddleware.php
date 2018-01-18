@@ -18,25 +18,25 @@ class StudentProfileMiddleware
     {
         if (Auth::guest()) {
             abort(403);
-        } else {
-            $user = $request->user();
+		}
 
-            if ($user->hasRole('staff') || $user->hasRole('admin')) {
-                return $next($request);
-            }
+		$user = $request->user();
 
-            if ($user->hasRole('student')) {
-                $slug = $request->route('slug');
+		if ($user->hasRole('staff') || $user->hasRole('admin')) {
+			return $next($request);
+		}
 
-                $student = Student::whereUserId($user->id)->first();
-                if ($student->student_number == intval($request->student)
-                    || $student->student_number == intval($slug)
-                    ) {
-                    return $next($request);
-                }
-                abort(403);
-            }
-        }
-        // return $next($request);
+		if ($user->hasRole('student')) {
+			$slug = $request->route('slug');
+
+			$student = Student::whereUserId($user->id)->first();
+			if ($student->student_number == intval($request->student)
+				|| $student->student_number == intval($slug)
+				) {
+				return $next($request);
+			}
+			abort(403);
+		}
+	
     }
 }

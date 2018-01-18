@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
+@section('title')
+	{{$program->name}}
+@endsection
+
 @section('content')
 	<div class="container">
-		<script type="text/javascript">
-			document.title = '{{$program->name}}' + ' - ' + document.title;
-		</script>
-		<h3>{{$program->name}}</h3>
+		<h3 class="page-header">{{$program->name}}</h3>
 		<h4>
 			<a href="/department/{{$program->department->short_name}}">
 				{{$program->department->name}}

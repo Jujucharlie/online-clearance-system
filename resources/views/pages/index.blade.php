@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+	Home
+@endsection
+
 @section('content')
 	<div class="container">
 		<h3 class="page-header">All Colleges</h3>

@@ -21,8 +21,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('userInSameDepartment', function ($department) {
-            $user = Auth::user();
-            
+
+			if(Auth::guest()){
+				return false;
+			}
+
+			$user = Auth::user();	
+
             if ($user->hasRole('admin')) {
                 return true;
             }

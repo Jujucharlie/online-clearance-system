@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
+@section('title')
+	{{$college->name}}
+@endsection
+
 @section('content')
 
 	
 	<div class="container">
 
-		<script type="text/javascript">
-			document.title = '{{$college->name}}' + ' - ' + document.title;
-		</script>
 		<h3>{{$college->name}}</h3>
 
 		<h4>Departments</h4>

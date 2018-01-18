@@ -1,5 +1,5 @@
-<footer class="footer">
+<nav class="footer">
   <div class="container">
-	  Copyright &copy; {{ date("Y") }}, College of Arts and Sciences
+		  Copyright &copy; {{ date("Y") }}. College of Arts and Sciences
   </div>
-</footer>
+</nav>
