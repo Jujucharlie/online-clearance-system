@@ -78,7 +78,8 @@
 							
 
 					<li class="dropdown">
-						<a href="#" id="avatar-anchor" class="dropdown-toggle" 
+						<a href="#" id="avatar-link" 
+							class="dropdown-toggle" 
 							data-toggle="dropdown" role="button" 
 							aria-expanded="false" 
 							aria-haspopup="true">

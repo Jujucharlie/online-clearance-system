@@ -8367,6 +8367,18 @@ body {
   background-color: #ffffff;
 }
 
+#avatar-link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.avatar {
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -8386,17 +8398,6 @@ body {
   position: absolute;
   padding-left: 20%;
   bottom: 0;
-}
-
-.avatar {
-  width: 40px;
-  border-radius: 50%;
-}
-
-#avatar-anchor {
-  margin-top: 5px;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .trunc {
