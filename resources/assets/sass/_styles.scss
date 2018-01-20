@@ -10,6 +10,12 @@ body {
 	margin-bottom: $footer-height;
 }
 
+
+.navbar {
+	background-color: $up-white;
+
+}
+
 .footer {
 	position: absolute;
 	bottom: 0;
@@ -17,14 +23,13 @@ body {
 	/* Set the fixed height of the footer here */
 	height: $footer-height * 0.75;
 	line-height: 60px; /* Vertically center the text there */
-	background-color: $up-maroon;
+	background-color: $brand-secondary;
 	margin-top: 100px;
 }
 
 .footer .container{
 	font-size: 8pt;
-	color: $up-terracotta;
-	font-family: sans-serif;
+	color: $up-white;
 	width: auto;
 	position: absolute;
 	padding-left: 20%;
@@ -32,10 +37,16 @@ body {
 }
 
 .avatar{
-	margin-right: 10px;
 	width: 40px;
 	border-radius: 50%;
 }
+
+#avatar-anchor{
+	margin-top: 5px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 
 .trunc{
 	white-space: nowrap;

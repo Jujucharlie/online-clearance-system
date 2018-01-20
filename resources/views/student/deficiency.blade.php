@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+	{{$student->name()}}
+@endsection
+
 @section('content')
 <div class="container">
 	@include('student.information')

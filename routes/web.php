@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('index');
 
-Route::get('/profile', 'PagesController@profile');
+Route::get('/profile', 'PagesController@profile')->name('profile');
 
 Route::resource('college', 'CollegeController');
 

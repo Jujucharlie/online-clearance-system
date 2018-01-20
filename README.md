@@ -9,5 +9,13 @@ for at least a few hours to have their college clearances issued.
 This system aims to minimize that wait time. In a few clicks, students can have
 their clearance released.
 
+# Dependencies
+* Composer
+* PHP 7.0
+
+Run `composer install`
+Copy the `.env.example` file, rename it to `.env` to configure environment
+variables.
+
 # Framework Used
 Laravel 5.5

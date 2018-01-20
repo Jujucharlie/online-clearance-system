@@ -11,3 +11,8 @@
 		@include('pages.lipsum')
 	</div>
 @endsection
+
+
+@section('title')
+	Google
+@endsection

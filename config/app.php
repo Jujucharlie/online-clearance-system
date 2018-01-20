@@ -182,6 +182,7 @@ return [
 
 		niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
+		Watson\Active\ActiveServiceProvider::class,
 
     ],
 
@@ -235,6 +236,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 		'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+		'Active' => Watson\Active\Facades\Active::class,
 
         'Staff' => App\Staff::class,
         'Deficiency' => App\Deficiency::class,

@@ -93,9 +93,11 @@
 
 							</a>
 						</th>
+						<th class="hidden-xs action-header trunc">
 						@hasRole('staff')	
-						<th class="hidden-xs action-header trunc">Actions</th>
+							Actions
 						@endhasRole
+						</th>
 					</tr>
 
 					@foreach($deficiencies as $deficiency)
