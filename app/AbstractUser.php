@@ -41,9 +41,26 @@ abstract class AbstractUser extends Model
 
 	public function avatar()
 	{
-		return $this->user->avatar;
+		$avatar = $this->user->avatar;
+
+		if($avatar)
+			return $avatar;
+
+		return $this->picture();
 	}
 	
+	
+    /**
+     * URI to studet's ID photo
+     */
+    public function picture()
+    {
+		$file = public_path() . '/images/id/' . $this->slug . '.jpg';
+		if(file_exists($file)){
+			return '/images/id/' . $this->slug . '.jpg';
+		}
+        return asset('images/id/default.png');
+    }
 
     abstract public function department();
     abstract public function college();

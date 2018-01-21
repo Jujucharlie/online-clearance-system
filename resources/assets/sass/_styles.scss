@@ -10,6 +10,9 @@ body {
 	margin-bottom: $footer-height;
 }
 
+#content{
+	margin-bottom: $footer-height;
+}
 
 .navbar {
 	background-color: $up-maroon;
@@ -51,6 +54,7 @@ body {
 		li > a {
 			color: $up-white !important;
 		}
+
 	}
 }
 
@@ -89,15 +93,18 @@ body {
 	margin-top: $avatar-margin;
 }
 
+#content{
+	margin-bottom: $footer-height + 50px;
+}
 .footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	/* Set the fixed height of the footer here */
-	height: $footer-height;
+	min-height: $footer-height;
 	line-height: 60px; /* Vertically center the text there */
-	background-color: $brand-secondary;
-	margin-top: 100px;
+	background-color: $up-green;
+	margin-top: 0;
 }
 
 .footer .container{

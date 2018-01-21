@@ -83,8 +83,16 @@
 							data-toggle="dropdown" role="button" 
 							aria-expanded="false" 
 							aria-haspopup="true">
-					<img class="avatar" 
-			  src="{{ Auth::user()->avatar }}" />
+
+							<img class="avatar" 
+								@if(Auth::user()->hasRole('student'))
+									src="{{Student::whereUserId(Auth::user()->id)
+										->first()->avatar()}}"
+								@else
+									src="{{Staff::whereUserId(Auth::user()->id)
+										->first()->avatar()}}"
+								@endif
+							/>
 
 							{{ Auth::user()->name }} <span class="caret"></span>
 						</a>

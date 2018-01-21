@@ -11,6 +11,7 @@
     <title>{{ config('app.name') }} - @yield('title', 'UP Manila')</title>
 
     <!-- Styles -->
+	<link rel="icon" href="{{ asset('images/favicon.ico') }}" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
