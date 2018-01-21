@@ -4,6 +4,8 @@ Route::get('/', 'PagesController@index')->name('index');
 
 Route::get('/profile', 'PagesController@profile')->name('profile');
 
+Route::get('/about', 'PagesController@about')->name('about');
+
 Route::resource('college', 'CollegeController');
 
 Route::resource('department', 'DepartmentController');

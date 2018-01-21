@@ -10,7 +10,12 @@ $up-red: #8e171a;
 $up-terracotta: #b43c25;
 $up-white: #ffffff;
 
-$footer-height: 125px;
+$footer-height: 100px;
+$navbar-height: $footer-height * 0.5;
+
+$avatar-height: 40px;
+$avatar-margin: ($navbar-height - $avatar-height)/2;
+
 
 // Body
 $body-bg: $up-white;

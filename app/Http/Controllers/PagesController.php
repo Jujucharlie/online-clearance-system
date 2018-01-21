@@ -27,6 +27,12 @@ class PagesController extends Controller
         return view('pages.index', compact('colleges', 'counts'));
     }
 
+	public function about()
+	{
+		return view('pages.about');
+	}
+	
+
     public function program($short_name)
     {
         $program = Program::where('short_name', $short_name)->first();
