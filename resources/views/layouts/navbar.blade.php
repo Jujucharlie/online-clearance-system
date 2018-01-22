@@ -19,15 +19,16 @@
 				{{ config('app.name', 'Laravel') }}
 			</a>
 
-			<div style="width: 50%; margin: 10px;" class="input-group">
-				{{ Form::text('student_search', null,
-					array('class' => 'form-control', 'placeholder' => 'Search')
-				)}}
-			  <span class="input-group-addon">
-				<span class="glyphicon glyphicon-envelope"></span>
-			  </span>
-			</div>
-
+			@if(Auth::user()->hasRole('staff'))
+				<div id="search-bar" class="input-group">
+					{{ Form::text('student_search', null,
+						array('class' => 'form-control', 'placeholder' => 'Search')
+					)}}
+				  <span class="input-group-addon">
+					<span class="glyphicon glyphicon-search"></span>
+				  </span>
+				</div>
+			@endif
 
 		</div>
 

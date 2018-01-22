@@ -28,6 +28,14 @@ body {
 .navbar {
 	background-color: $up-maroon;
 	min-height: $navbar-height;
+
+	#search-bar{
+		width: 50%;
+		margin: 7px 25%;
+
+		.form-control:focus{
+		}
+	}
 	
 	.navbar-toggle{
 		border-color: $up-maroon;

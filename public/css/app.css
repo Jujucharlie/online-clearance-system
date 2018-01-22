@@ -8383,6 +8383,11 @@ body {
   min-height: 50px;
 }
 
+.navbar #search-bar {
+  width: 50%;
+  margin: 7px 25%;
+}
+
 .navbar .navbar-toggle {
   border-color: #7b1113;
 }
