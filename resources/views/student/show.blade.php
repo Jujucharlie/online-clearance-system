@@ -162,6 +162,7 @@
 
 								{{ Form::close() }}
 
+								<span data-toggle="tooltip" title="Edit item">
 								{{ Form::button(
 									'<span class="glyphicon
 									glyphicon-edit"></span>',
@@ -172,6 +173,8 @@
 										'#edit-deficiency-'.$deficiency->id)
 								
 								) }}
+
+								</span>
 
 								@include('student.editmodal')
 

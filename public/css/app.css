@@ -4218,29 +4218,29 @@ fieldset[disabled] .btn-success.focus {
 
 .btn-info {
   color: #fff;
-  background-color: #132e54;
-  border-color: #0e233f;
+  background-color: #f3aa2c;
+  border-color: #f2a014;
 }
 
 .btn-info:focus,
 .btn-info.focus {
   color: #fff;
-  background-color: #0a172a;
-  border-color: black;
+  background-color: #df920d;
+  border-color: #7f5307;
 }
 
 .btn-info:hover {
   color: #fff;
-  background-color: #0a172a;
-  border-color: #03070d;
+  background-color: #df920d;
+  border-color: #be7c0b;
 }
 
 .btn-info:active,
 .btn-info.active,
 .open > .btn-info.dropdown-toggle {
   color: #fff;
-  background-color: #0a172a;
-  border-color: #03070d;
+  background-color: #df920d;
+  border-color: #be7c0b;
 }
 
 .btn-info:active:hover,
@@ -4253,8 +4253,8 @@ fieldset[disabled] .btn-success.focus {
 .open > .btn-info.dropdown-toggle:focus,
 .open > .btn-info.dropdown-toggle.focus {
   color: #fff;
-  background-color: #03070d;
-  border-color: black;
+  background-color: #be7c0b;
+  border-color: #7f5307;
 }
 
 .btn-info:active,
@@ -4272,12 +4272,12 @@ fieldset[disabled] .btn-success.focus {
 fieldset[disabled] .btn-info:hover,
 fieldset[disabled] .btn-info:focus,
 fieldset[disabled] .btn-info.focus {
-  background-color: #132e54;
-  border-color: #0e233f;
+  background-color: #f3aa2c;
+  border-color: #f2a014;
 }
 
 .btn-info .badge {
-  color: #132e54;
+  color: #f3aa2c;
   background-color: #fff;
 }
 
@@ -6175,12 +6175,12 @@ a.label:focus {
 }
 
 .label-info {
-  background-color: #132e54;
+  background-color: #f3aa2c;
 }
 
 .label-info[href]:hover,
 .label-info[href]:focus {
-  background-color: #0a172a;
+  background-color: #df920d;
 }
 
 .label-warning {
@@ -6501,7 +6501,7 @@ a.thumbnail.active {
 }
 
 .progress-bar-info {
-  background-color: #132e54;
+  background-color: #f3aa2c;
 }
 
 .progress-striped .progress-bar-info {
@@ -8363,8 +8363,19 @@ body {
   margin-bottom: 100px;
 }
 
-#content {
-  margin-bottom: 100px;
+.footer {
+  background-color: #014421;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+  color: #ffffff;
+}
+
+.footer .container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 0.8em;
 }
 
 .navbar {
@@ -8445,27 +8456,6 @@ body {
 
 #content {
   margin-bottom: 150px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  min-height: 100px;
-  line-height: 60px;
-  /* Vertically center the text there */
-  background-color: #014421;
-  margin-top: 0;
-}
-
-.footer .container {
-  font-size: 8pt;
-  color: #ffffff;
-  width: auto;
-  position: absolute;
-  padding-left: 20%;
-  bottom: 0;
 }
 
 .trunc {
