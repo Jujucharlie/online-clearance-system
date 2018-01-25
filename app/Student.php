@@ -3,11 +3,39 @@
 namespace App;
 
 use App\AbstractUser;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class Student extends AbstractUser
 {
+	use SearchableTrait;
+
+	/** Searchable rules
+	 *
+	 * @var array
+	 */
+
+	protected $searchable = [
+		/**
+		 * Columns and their priority in search results.
+		 * Columns with higher values are more important.
+		 * Columns with equal values have equal importance.
+		 *
+		 * @var array
+		 */
+		'columns' => [
+			'students.student_number' => 10,
+			'users.name' => 10,
+			'users.email' => 5,
+		],
+
+		'joins' => [
+			'programs' => ['programs.id', 'students.program_id'],
+			'users' => ['users.id', 'students.user_id'],
+		],
+	];
+
     public function program()
     {
         return $this->belongsTo('App\Program');

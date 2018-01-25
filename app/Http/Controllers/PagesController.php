@@ -31,8 +31,18 @@ class PagesController extends Controller
 	{
 		return view('pages.about');
 	}
-	
 
+	public function search(Request $request)
+	{
+
+		$students = Student::search($request->get('q'))
+							->with(['user', 'program'])
+							->get();
+		return $students;
+
+	}
+	
+	
     public function program($short_name)
     {
         $program = Program::where('short_name', $short_name)->first();

@@ -8378,6 +8378,17 @@ body {
   font-size: 0.8em;
 }
 
+.tt-hint,
+.tt-input,
+.tt-menu {
+  width: 100% !important;
+}
+
+.twitter-typeahead {
+  width: 100% !important;
+  margin-bottom: -6px;
+}
+
 .navbar {
   background-color: #7b1113;
   min-height: 50px;

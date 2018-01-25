@@ -19,17 +19,23 @@
 				{{ config('app.name', 'Laravel') }}
 			</a>
 
-			@if(Auth::user()->hasRole('staff'))
-				<div id="search-bar" class="input-group">
-					{{ Form::text('student_search', null,
-						array('class' => 'form-control', 'placeholder' => 'Search')
-					)}}
-				  <span class="input-group-addon">
-					<span class="glyphicon glyphicon-search"></span>
-				  </span>
-				</div>
-			@endif
+			@if(!Auth::guest())
+				@if(Auth::user()->hasRole('staff'))
+					<div id="search-bar" class="input-group">
+						{{ Form::text('q', null,
+							array('placeholder' => 'Search',
+								  'class' => 'form-control',
+								  'id' => 'search_text',
+								  'autocomplete' => 'off'
+								  )
+						)}}
+					  <span class="input-group-addon">
+						<span class="glyphicon glyphicon-search"></span>
+					  </span>
+					</div>
 
+				@endif
+			@endif
 		</div>
 
 		<div class="collapse navbar-collapse" id="app-navbar-collapse">

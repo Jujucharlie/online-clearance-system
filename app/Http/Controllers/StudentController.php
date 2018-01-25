@@ -107,4 +107,6 @@ class StudentController extends Controller
 
         return $pdf->stream($file_name);
     }
+
+	
 }

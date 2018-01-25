@@ -25,6 +25,15 @@ body {
 	}
 }
 
+
+.tt-hint, .tt-input, .tt-menu{
+	width: 100% !important;
+}
+
+.twitter-typeahead{
+	width: 100% !important;
+	margin-bottom: -6px;
+}
 .navbar {
 	background-color: $up-maroon;
 	min-height: $navbar-height;
@@ -32,9 +41,6 @@ body {
 	#search-bar{
 		width: 50%;
 		margin: 7px 25%;
-
-		.form-control:focus{
-		}
 	}
 	
 	.navbar-toggle{
