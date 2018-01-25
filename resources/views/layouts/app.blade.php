@@ -67,26 +67,25 @@
 						'<div class="list-group search-results-dropdown"> <div class="list-group-item">No results found.</div> </div>'
 					],
 
-					header: [
-						'<div class="list-group search-results-dropdown">'
-					],
-
 					suggestion: function(data){
 						var email = data.user.email;
 						var name = data.user.name;
 						var program = data.program.name;
 						var student_number = data.student_number;
+						var slug = data.slug;
 
-						return  "<a href='/student/" + student_number + 
+						return  "<a href='/student/" + slug + 
 								"' class='list-group-item'>" + 
 									name + "<br/>" +
 									student_number + "<br/>" +
-									email + "<br/>" +
 									program + "<br/>" +
+									email + "<br/>" +
 								"</a>";
 
 
-					}
+					},
+
+					pending: [ '<div class="list-group search-results-dropdown"> <div class="list-group-item">Searching... </div> </div>']
 				}
 
 			});
