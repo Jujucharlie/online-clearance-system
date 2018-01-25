@@ -38,6 +38,14 @@ class PagesController extends Controller
 		$students = Student::search($request->get('q'))
 							->with(['user', 'program'])
 							->get();
+
+		foreach($students as $student){
+			if(!$student->user->avatar){
+				$student->user->avatar = $student->picture();
+			}
+		}
+
+
 		return $students;
 
 	}

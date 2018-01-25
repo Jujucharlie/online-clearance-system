@@ -1,14 +1,5 @@
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque
-posuere augue, non rutrum justo. Duis sollicitudin commodo dictum. Nulla aliquam
-laoreet ipsum non sollicitudin. Class aptent taciti sociosqu ad litora torquent
-per conubia nostra, per inceptos himenaeos. Nunc a pulvinar est. Cras sed tortor
-in mauris ultrices commodo. Sed ut urna neque. Phasellus at interdum elit, non
-ultrices turpis. Etiam dignissim velit a ante facilisis tincidunt. Quisque sit
-amet nisi nec tellus lacinia sodales eget ac felis. Etiam tempus eleifend
-commodo.</p>
-
-
-
+<p>This is a placeholder page. Information in this database are randomly
+generated.</p>
 
 <p>Proin consectetur vitae eros vehicula mollis. Sed ullamcorper auctor tellus
 eu varius. Fusce ut odio ac felis rhoncus porta non id ligula. Quisque in quam
