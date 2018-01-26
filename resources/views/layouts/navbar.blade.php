@@ -21,7 +21,12 @@
 
 			@if(!Auth::guest())
 				@if(Auth::user()->hasRole('staff'))
+					{{ Form::open(
+						array('method' => 'GET',
+							  'route' => 'search',
+					))}}
 					<div id="search-bar" class="input-group">
+
 						{{ Form::text('q', null,
 							array('placeholder' => 'Search',
 								  'class' => 'form-control',
@@ -29,10 +34,16 @@
 								  'autocomplete' => 'off'
 								  )
 						)}}
-					  <span class="input-group-addon">
-						<span class="glyphicon glyphicon-search"></span>
+
+					  <span class="input-group-btn">
+						{{ Form::button('<span class="glyphicon
+							glyphicon-search"></span>',
+							array('class' => 'btn btn-secondary',
+								  'type' => 'submit')
+						)}}
 					  </span>
 					</div>
+						{{ Form::close() }}
 
 				@endif
 			@endif

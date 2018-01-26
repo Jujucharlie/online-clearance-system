@@ -32,7 +32,13 @@ class PagesController extends Controller
 		return view('pages.about');
 	}
 
-	public function search(Request $request)
+	public function search()
+	{
+		$students = $this->autocomplete(request());
+		return view('pages.searchresults', compact('students'));
+	}
+	
+	public function autocomplete(Request $request)
 	{
 
 		$students = Student::search($request->get('q'))
@@ -44,7 +50,6 @@ class PagesController extends Controller
 				$student->user->avatar = $student->picture();
 			}
 		}
-
 
 		return $students;
 

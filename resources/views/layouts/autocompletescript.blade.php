@@ -2,17 +2,24 @@
 	@if(Auth::user()->hasRole('staff'))
 		<script>
 			//enable autocomplete through typeahead.js
+			var somethingsomething;
 			jQuery(document).ready(function($){
 				// Set the options for Bloodhound suggestion engine
 
 				var engine = new Bloodhound({
+					datumTokenizer: function(data){
+						return data;
+					},
+					
+					queryTokenizer: function(data){
+						return data;
+					},
+
 					remote: {
 						 url: '{{route("autocomplete") }}?q=%QUERY%',
 						 wildcard: '%QUERY%'
 					},
 
-					datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-					queryTokenizer: Bloodhound.tokenizers.whitespace
 				});
 
 				$("#search_text").typeahead({

@@ -25,9 +25,9 @@ class Student extends AbstractUser
 		 * @var array
 		 */
 		'columns' => [
-			'students.student_number' => 10,
 			'users.name' => 10,
-			'users.email' => 5,
+			'users.email' => 1,
+			'students.student_number' => 1,
 		],
 
 		'joins' => [

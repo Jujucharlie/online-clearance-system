@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.0.0",
+        "corejs-typeahead": "^1.2.1",
         "glyphicons": "^0.2.0",
         "popper.js": "^1.12.9"
     }
