@@ -24,6 +24,7 @@
 					{{ Form::open(
 						array('method' => 'GET',
 							  'route' => 'search',
+							  'onsubmit' => 'return validateSearch();'
 					))}}
 					<div id="search-bar" class="input-group">
 
@@ -31,7 +32,7 @@
 							array('placeholder' => 'Search',
 								  'class' => 'form-control',
 								  'id' => 'search_text',
-								  'autocomplete' => 'off'
+								  'autocomplete' => 'off',
 								  )
 						)}}
 

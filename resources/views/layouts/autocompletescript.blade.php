@@ -1,8 +1,14 @@
 @if(!Auth::guest())
 	@if(Auth::user()->hasRole('staff'))
 		<script>
+		
+			function validateSearch(){
+				var searchText = document.getElementById("search_text");
+
+				//don't submit if search_text is empty
+				return (searchText.value.trim().length > 0);
+			}
 			//enable autocomplete through typeahead.js
-			var somethingsomething;
 			jQuery(document).ready(function($){
 				// Set the options for Bloodhound suggestion engine
 

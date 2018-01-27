@@ -5,7 +5,8 @@
 	<div class="container">
 		<div class="container">
 
-			<code>{{ request()->get('q') }}</code>
+			Showing results for <kbd>{{ request()->get('q') }}</kbd>
+			<br/>
 			{{ $students->count()==1? "One record found" : $students->count() .
 				" records found." }}
 		</div>
