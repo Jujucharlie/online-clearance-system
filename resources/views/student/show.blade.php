@@ -25,6 +25,14 @@
 				 Print Clearance</a>
 			@endhasRole
 
+			@hasRole('student')
+				<a target="_blank" 
+					href="#" 
+					class="btn btn-success">
+					<span class="glyphicon glyphicon-alert"></span>
+				 Request Clearance</a>
+			@endhasRole
+
 			</h4>
 
 			@include('errors.list')

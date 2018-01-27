@@ -81,7 +81,7 @@
 
 						},
 
-						pending: [ '<div class="list-group search-results-dropdown"> <div class="list-group-item">Searching... </div> </div>']
+						pending: [ '<div class="list-group search-results-dropdown"><div class="list-group-item pending-search">Searching<span class="loader"></span></div> </div>']
 					}
 
 				});

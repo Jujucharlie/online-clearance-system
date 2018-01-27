@@ -159,3 +159,34 @@ body {
 	width: 10%;
 }
 
+.loader{
+	border-top: 3px solid $up-maroon;
+	border-right: 3px solid $up-white;
+	border-bottom: 3px solid $up-green;
+	border-left: 3px solid $up-yellow;
+
+	border-radius: 50%;
+
+	width: 27px;
+	height: 27px;
+
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+
+	display: inline-block;
+	float: right;
+}
+
+@-webkit-keyframes spin{
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin{
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.pending-search{
+	height: 50px;
+}
