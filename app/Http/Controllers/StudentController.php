@@ -108,5 +108,15 @@ class StudentController extends Controller
         return $pdf->stream($file_name);
     }
 
+	public function html($slug)
+	{
+		$student = Student::whereSlug($slug)->first();
+
+		$file_name = $slug;
+
+		return view('student.pdf', compact('student', 'file_name'));
+	}
+	
+
 	
 }

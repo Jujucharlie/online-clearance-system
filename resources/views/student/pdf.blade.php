@@ -5,7 +5,7 @@
 
 	<style>
 		body{
-			font-family: serif; 
+			font-family: sans-serif; 
 			font-size: 10pt;
 		}
 
@@ -29,7 +29,7 @@
 
 		.student-name{
 			text-transform: uppercase;
-			font-weight: bold;
+			width: 40%;
 		}
 
 		.date{
@@ -50,53 +50,130 @@
 		.def-count{
 			text-align: center;
 		}
+
+		.fillable-cell{
+			border-bottom: 1px solid black;
+			padding-left: 2%;
+		}
+
+		.spacer-cell{
+			width: 5%;
+		}
+
+
+		.ocs-signature{
+			font-size: 10pt;
+			text-align: center;
+		}
+
+		.content{
+			height: 50%;
+			position: relative;
+		}
+		
+		.loa-footer{
+			font-size: 8pt;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+		}
+
+		.loa-footer td{
+			width: 33%;
+			text-align: center;
+		}
+
+		.approved{
+			float: right;
+		}
+
+		.signature-line{
+			border-bottom: 1px solid black;
+		}
+
+		.deficiencies-count{
+			text-align: center;
+			padding: 50px;
+		}
 	</style>
 
 	<body>
+		<div class="content">
 		<div class="header">
+			COLLEGE OF ARTS AND SCIENCES<br/>
 			University of the Philippines Manila<br/>
-			College of Arts and Sciences<br/>
-			<br/>
-			COLLEGE CLEARANCE
+			STUDENT CLEARANCE
 		</div>
 
-		<div class="content">
 			<table class="student-information">
 				<tr>
-					<td>Name</td>
-					<td class="student-name">{{$student->name()}}</td>
+					<td>
+						NAME
+					</td>
+					<td class="student-name fillable-cell">
+						{{ $student->name() }}
+					</td>
+
+					<td class="spacer-cell">
+					</td>
+
+					<td>
+						Purpose
+					</td>
+					<td class="fillable-cell">Transfer to UP Diliman</td>
 				</tr>
 				<tr>
-					<td>Student Number</td>
-					<td>{{$student->student_number()}}</td>
+					<td>
+						Student No.
+					</td>
+					<td class="fillable-cell">
+						{{ $student->student_number() }}
+					</td>
 				</tr>
 				<tr>
-					<td>Program</td>
-					<td>{{$student->program->name}}</td>
-				</tr>
-				<tr>
-					<td>College</td>
-					<td>{{$student->college()->name}}</td>
+					<td>
+						Degree
+					</td>
+					<td class="fillable-cell">
+						{{ $student->program->name }}
+					</td>
 				</tr>
 			</table>
 
-			<table>
-				<tr class="def-table-header">
-					<th>Department</th>
-					<th>Deficiencies</th>
-				</tr>
-				@foreach(College::whereShortName('cas')->first()
-					->departments->sortBy('short_name') as $department)
-						<tr class="def-table-info">
-							<td>{{$department->name}}</td>
-							<td class="def-count">
-								{{$student->incompleteDeficiencies()
-								->where('department_id', $department->id)
-								->count()}}
-							</td>
-						</tr>
-				@endforeach
-			</table>
+			<div class="deficiencies-count">
+				@php
+					$count = $student->incompleteDeficiencies()->count();
+				@endphp
+
+				@if(!$count)
+					*** NO DEFICIENCIES ON RECORD ***
+				@else
+					*** {{$count==1 ? $count . " INCOMPLETE DEFICIENCY ": $count
+						. "
+					INCOMPLETE DEFICIENCIES "}} ON RECORD ***
+				@endif
+
+			</div>
+
+			<div class="loa-footer">
+				<table>
+					<tr>
+						<td class="approved">APPROVED:</td>
+						<td class="signature-line"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Dean / College Secretary</td>
+						<td></td>
+					</tr>
+
+				</table>
+				<hr>
+				*Applicants for Leave of Absence must pay Leave of Absence Fee
+				to Cash Division, U.P. Manila prior to the approval of the
+				Dean/College Secretary.
+			</div>
 		</div>
 
 		<div class="footer">

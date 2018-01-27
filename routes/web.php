@@ -26,6 +26,9 @@ Route::resource('student.deficiency', 'StudentDeficiencyController');
 
 Route::get('student/{student}/pdf', 'StudentController@pdf');
 
+Route::get('student/{student}/html', 'StudentController@html');
+
+
 Route::get('autocomplete', 'PagesController@autocomplete')->name('autocomplete');
 
 Auth::routes();

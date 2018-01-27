@@ -8,6 +8,7 @@
 				//don't submit if search_text is empty
 				return (searchText.value.trim().length > 0);
 			}
+
 			//enable autocomplete through typeahead.js
 			jQuery(document).ready(function($){
 				// Set the options for Bloodhound suggestion engine
