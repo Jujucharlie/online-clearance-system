@@ -28,7 +28,6 @@ Route::get('student/{student}/pdf', 'StudentController@pdf');
 
 Route::get('student/{student}/html', 'StudentController@html');
 
-
 Route::get('autocomplete', 'PagesController@autocomplete')->name('autocomplete');
 
 Auth::routes();
@@ -46,3 +45,5 @@ Route::get('google', 'PagesController@google');
 Route::get('glogin', 'PagesController@googleLogin')->name('glogin');
 
 Route::get('search', 'PagesController@search')->name('search');
+
+Route::post('requestclearance', 'ClearanceController@requestClearance');

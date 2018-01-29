@@ -22,6 +22,8 @@ class CreateStudentsTable extends Migration
             $table->integer('student_number')->unsigned()->unique();
             $table->string('slug')->unique();
 
+			$table->string('purpose')->nullable();
+
             $table->integer('program_id')->unsigned();
             $table->foreign('program_id')->references('id')->on('programs');
 

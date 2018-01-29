@@ -120,7 +120,9 @@
 					<td>
 						Purpose
 					</td>
-					<td class="fillable-cell">Transfer to UP Diliman</td>
+					<td class="fillable-cell">
+						{{ $student->purpose?$student->purpose:"n/a" }}
+					</td>
 				</tr>
 				<tr>
 					<td>

@@ -14,10 +14,19 @@
 			@include('student.information')
 
 			@include('flash::message')
+
+			@if($student->purpose)
+				<div class="alert alert-success alert-important">
+					Requested Clearance with purpose:
+					<strong>{{ $student->purpose }}</strong>
+				</div>
+			@endif
+
 			<h4 class="page-header">
 				Deficiencies
 
 			@hasRole('staff')
+				
 				<a target="_blank" 
 					href="{{$student->linkTo()}}/pdf" 
 					class="btn btn-success">
@@ -25,15 +34,19 @@
 				 Print Clearance</a>
 			@endhasRole
 
+			</h4>
+
+
 			@hasRole('student')
-				<a target="_blank" 
-					href="#" 
+			<button data-toggle="modal" data-target="#request-clearance-modal"
 					class="btn btn-success">
 					<span class="glyphicon glyphicon-alert"></span>
-				 Request Clearance</a>
+				 Request Clearance
+			</button>
+
+				@include('student.requestmodal')
 			@endhasRole
 
-			</h4>
 
 			@include('errors.list')
 
