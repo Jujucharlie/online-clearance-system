@@ -111,7 +111,11 @@
 						NAME
 					</td>
 					<td class="student-name fillable-cell">
-						{{ $student->name() }}
+						@if($student["name"])
+							{{ $student["name"] }}
+						@else
+							{{ $student->name() }}
+						@endif
 					</td>
 
 					<td class="spacer-cell">
@@ -121,7 +125,11 @@
 						Purpose
 					</td>
 					<td class="fillable-cell">
-						{{ $student->purpose?$student->purpose:"n/a" }}
+						@if($student["purpose"])
+							{{ $student["purpose"] }}
+						@else
+							{{ $student->purpose?$student->purpose:"n/a" }}
+						@endif
 					</td>
 				</tr>
 				<tr>
@@ -129,7 +137,11 @@
 						Student No.
 					</td>
 					<td class="fillable-cell">
-						{{ $student->student_number() }}
+						@if($student["student_number"])
+							{{ $student["student_number"] }}
+						@else
+							{{ $student->student_number() }}
+						@endif
 					</td>
 				</tr>
 				<tr>
@@ -137,14 +149,20 @@
 						Degree
 					</td>
 					<td class="fillable-cell">
-						{{ $student->program->name }}
+						@if($student["program"])
+							{{ $student["program"] }}
+						@else
+							{{ $student->program->name }}
+						@endif
 					</td>
 				</tr>
 			</table>
 
 			<div class="deficiencies-count">
 				@php
-					$count = $student->incompleteDeficiencies()->count();
+					if(!$student["name"])
+						$count = $student->incompleteDeficiencies()->count();
+					else $count = 0;
 				@endphp
 
 				@if(!$count)

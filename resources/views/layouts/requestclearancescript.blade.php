@@ -1,6 +1,4 @@
 @if(Auth::user())
-@hasRole('student')
-
 	@php
 		$current_sem = 1172;
 	@endphp
@@ -98,7 +96,7 @@
 					'<span class="input-group-btn">' +
 							'<button id="to-increment" type="button" class="btn btn-secondary">'+
 							'<span class="glyphicon glyphicon-chevron-right"></span></button></span></div></div>' +
-							'<p class="alert alert-warning">Applicants for Leave of Absence must pay leave of absence fee to Cash Division, UP Manila prior to the approval of the Dean/College Secretary.</p>'
+							'<p class="alert alert-info">Applicants for Leave of Absence must pay leave of absence fee to Cash Division, UP Manila prior to the approval of the Dean/College Secretary.</p>'
 							);
 
 
@@ -200,5 +198,4 @@
 
 		});
 	</script>
-@endhasRole
 @endif
