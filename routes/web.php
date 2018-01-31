@@ -47,3 +47,7 @@ Route::get('glogin', 'PagesController@googleLogin')->name('glogin');
 Route::get('search', 'PagesController@search')->name('search');
 
 Route::post('requestclearance', 'ClearanceController@requestClearance');
+
+Route::get('clearanceform', 'ClearanceController@form');
+
+Route::post('clearanceform/pdf', 'ClearanceController@pdf');

@@ -243,6 +243,7 @@ return [
         'Department' => App\Department::class,
         'Student' => App\Student::class,
         'College' => App\College::class,
+        'Program' => App\Program::class,
 
 
     ],

@@ -111,7 +111,7 @@
 						NAME
 					</td>
 					<td class="student-name fillable-cell">
-						@if($student["name"])
+						@if($student["from_blank_form"])
 							{{ $student["name"] }}
 						@else
 							{{ $student->name() }}
@@ -125,7 +125,7 @@
 						Purpose
 					</td>
 					<td class="fillable-cell">
-						@if($student["purpose"])
+						@if($student["from_blank_form"])
 							{{ $student["purpose"] }}
 						@else
 							{{ $student->purpose?$student->purpose:"n/a" }}
@@ -137,7 +137,7 @@
 						Student No.
 					</td>
 					<td class="fillable-cell">
-						@if($student["student_number"])
+						@if($student["from_blank_form"])
 							{{ $student["student_number"] }}
 						@else
 							{{ $student->student_number() }}
@@ -149,7 +149,7 @@
 						Degree
 					</td>
 					<td class="fillable-cell">
-						@if($student["program"])
+						@if($student["from_blank_form"])
 							{{ $student["program"] }}
 						@else
 							{{ $student->program->name }}
@@ -160,7 +160,7 @@
 
 			<div class="deficiencies-count">
 				@php
-					if(!$student["name"])
+					if(!$student["from_blank_form"])
 						$count = $student->incompleteDeficiencies()->count();
 					else $count = 0;
 				@endphp

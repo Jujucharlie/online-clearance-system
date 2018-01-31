@@ -47,10 +47,15 @@
 
 		<div class="form-group">
 			{{ Form::label('student_program', 'Degree Program') }}
-			{{ Form::text('student_program', null,
-				array('class' => 'form-control', 
-					  'required',
-					  'placeholder' => 'Example: BS Political Science')) }}
+
+			<select required name="student_program" class="form-control">
+				<option value="" selected="selected"
+			   disabled="disabled">Select one</option>
+
+				@foreach(Program::all()->sortBy('name') as $program)
+					<option value="{{$program->name}}">{{$program->name}}</option>
+				@endforeach
+			</select>
 		</div>
 
 		<div class="form-group">
