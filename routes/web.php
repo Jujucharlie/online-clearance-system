@@ -48,6 +48,10 @@ Route::get('search', 'PagesController@search')->name('search');
 
 Route::post('requestclearance', 'ClearanceController@requestClearance');
 
-Route::get('clearanceform', 'ClearanceController@form');
+Route::get('clearanceform', 'ClearanceController@form')->middleware('studentprofile');
 
-Route::post('clearanceform/pdf', 'ClearanceController@pdf');
+Route::post('clearanceform/pdf', 'ClearanceController@pdf')->middleware('studentprofile');
+
+Route::resource('department.tasks', 'TaskListController');
+
+Route::resource('department.tasks.items', 'TaskListItemController');

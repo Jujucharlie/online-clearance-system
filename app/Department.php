@@ -33,8 +33,11 @@ class Department extends Model
 		return 	"/department/" . $this->short_name;
 	}
 	
-
-    
+	public function task_lists()
+	{
+		return $this->hasMany('App\TaskList');
+	}
+	
 
     /**
      * Collection of students from all programs

@@ -55,13 +55,14 @@ class DeficiencyController extends Controller
 		$def = Deficiency::findOrFail($id);
 
         //Flash notification confirming user's action
-		$flash_message = "Item edited";
+		$flash_message = "Item <strong>". request()->get('title') . "</strong> edited";
 
 		$def->checkDepartmentAndFlashMessage($flash_message);
 
 		$validatedRequest = request()->validate([
 			'title' => 'required',
 			'note' => 'nullable',
+			'staff_id' => 'required'
 		]);
 
 

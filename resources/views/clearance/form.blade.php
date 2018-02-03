@@ -37,10 +37,11 @@
 			{{ Form::label('student_number', 'Student Number') }}
 			{{ Form::text('student_number', null,
 				array('class' => 'form-control', 
-					  'type' => 'number',
-					  'maxlength' => '9',
 					  'placeholder' => 'Example: 201512345',
-					  'required'
+					  'required',
+					  'pattern' => '[0-9]{9}',
+					  'maxlength' => '9',
+					  'title' => 'Nine-digit student number'
 				  )) }}
 		</div>
 

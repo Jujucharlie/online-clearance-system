@@ -28,10 +28,17 @@
 				
 				<div class="form-group">
 					{{ Form::label('staff_id', 'Staff') }}
-					{{ Form::text('staff_id',
-						Staff::find($deficiency->staff_id)->name(),
-						array("class" => "form-control", "readonly")
-					) }}
+
+					<select id="staff_id" name="staff_id" class="form-control">
+
+						@foreach(Department::find($deficiency->department_id)->staff->sortBy('user.name') as $staff)
+							<option value="{{$staff->id}}"
+			   {{$staff->id == $deficiency->staff_id?"selected":""}}>
+							{{$staff->name()}}
+							</option>
+
+						@endforeach
+					</select>
 				</div>
 				
 				<div class="form-group">

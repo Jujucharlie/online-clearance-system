@@ -23,6 +23,7 @@ class ProgramTableSeeder extends Seeder
         }
 
         makeProgram('BS Computer Science', 'bscs', 'dpsm');
+        makeProgram('BS Biology', 'bsb', 'db');
         makeProgram('MS Health Informatics', 'mshi', 'casgrad');
         makeProgram('BS Biochemistry', 'bsbc', 'dpsm');
         makeProgram('BS Pharmacy', 'bsp', 'dp');

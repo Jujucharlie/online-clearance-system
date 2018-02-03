@@ -21,7 +21,7 @@ class ClearanceController extends Controller
         activity()
             ->performedOn($student)
             ->causedBy($student)
-            ->withProperties(['purpose' => $purpose_str])
+            ->withProperties(['purpose' => $student->purpose])
 			->log("Requested college clearance");
 		
 		//redirect
